@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="98dfa542-643b-4548-83bb-145f735f5cb1" name="Default Changelist" comment="remove targets">
+      <change afterPath="$PROJECT_DIR$/.idea/$CACHE_FILE$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/internet.sptl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sbt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internet-core/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internet-core/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internet-data-impl/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internet-data-impl/src/main/java/org/enargit/karaf/data/lombok.config" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internet-mapper-impl/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internet-mapper/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internet.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stackoverflow.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/internet-data/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/audit/CurrentIpAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/audit/CurrentIpAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/audit/CurrentUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/audit/CurrentUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/dao/api/BasicDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/dao/api/BlogDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/dao/api/MapBlogTagsDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/dao/api/TagDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/dao/impl/BasicDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/dao/impl/BlogDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/dao/impl/MapBlogTagsDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/dao/impl/TagDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/dto/BasicDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/dto/BasicDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/dto/BlogDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/dto/BlogDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/dto/MapBlogTagsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/dto/MapBlogTagsDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/dto/TagDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/dto/TagDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/entities/BaseRevisionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/entities/BaseRevisionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/entities/BasicEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/entities/BasicEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/entities/Blog.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/entities/Blog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/entities/MapBlogTags.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/entities/MapBlogTags.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/entities/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/entities/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/entities/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/entities/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/enums/DataTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/enums/DataTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/enums/ObjectTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/enums/ObjectTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/enums/ValueTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/enums/ValueTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/listener/BaseRevisionEntityListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/listener/BaseRevisionEntityListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/mapper/api/BaseMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/mapper/api/BlogMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/mapper/api/MapBlogTagsMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/mapper/api/TagMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/mapper/impl/BlogMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/mapper/impl/MapBlogTagsMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/mapper/impl/TagMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/pagination/AbstractPageRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/pagination/AbstractPageRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/pagination/Chunk.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/pagination/Chunk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/pagination/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/pagination/Page.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/pagination/PageImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/pagination/PageImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/pagination/PageRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/pagination/PageRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/pagination/Pageable.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/pagination/Pageable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/pagination/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/pagination/Range.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/pagination/Slice.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/pagination/Slice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/pagination/SliceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/pagination/SliceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/pagination/Sort.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/pagination/Sort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/pagination/Unpaged.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/pagination/Unpaged.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/utils/CollectionUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/utils/CollectionUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/utils/Lazy.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/utils/Lazy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/utils/LazyStreamable.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/utils/LazyStreamable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/utils/MultiValueMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/utils/MultiValueMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/utils/ObjectUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/utils/ObjectUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/utils/StreamUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/utils/StreamUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/utils/Streamable.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/utils/Streamable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/data/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/utils/StringUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/main/java/org/enargit/karaf/lombok.config" beforeDir="false" afterPath="$PROJECT_DIR$/internet-core/src/main/java/org/enargit/karaf/core/lombok.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-data/src/test/java/org/enargit/karaf/data/test/TestCurrentUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-rest/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/internet-rest/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-rest/src/main/java/org/enargit/karaf/web/rest/api/BasicRestService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-rest/src/main/java/org/enargit/karaf/web/rest/api/BlogRestService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-rest/src/main/java/org/enargit/karaf/web/rest/api/MapBlogTagsRestService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-rest/src/main/java/org/enargit/karaf/web/rest/api/TagRestService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-rest/src/main/java/org/enargit/karaf/web/rest/impl/BasicRestServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-rest/src/main/java/org/enargit/karaf/web/rest/impl/BlogRestServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-rest/src/main/java/org/enargit/karaf/web/rest/impl/MapBlogTagsRestServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-rest/src/main/java/org/enargit/karaf/web/rest/impl/TagRestServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-rest/src/main/java/org/enargit/karaf/web/server/RestService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ErrorTreeViewConfiguration">
+    <option name="autoscrollToSource" value="true" />
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Gantt">
+    <property name="project-savefile" value="E:\_DEV\_git_repos\internet\.idea\internet.sptl" />
+    <property name="last-save-path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.4\jbr\bin" />
+    <property name="work-weekends" value="false" />
+    <property name="work-format" value="#,##" />
+    <property name="date-format" value="dd-MMM-yyyy" />
+    <property name="gantt-texture" value="Solid" />
+    <property name="gantt-texture-bg" value="-8355712" />
+    <property name="gantt-texture-fg" value="-16777216" />
+    <property name="gantt-group-color" value="-16777096" />
+    <property name="gantt-bar-style" value="linked" />
+    <property name="gantt-header-style" value="week-header" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="E:\_DEV\_git_repos\internet\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../apache-maven-3.5.3" />
+        <option name="userSettingsFile" value="E:\_DEV\apache-maven-3.5.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="downloadAnnotationsAutomatically" value="true" />
+        <option name="downloadDocsAutomatically" value="true" />
+        <option name="downloadSourcesAutomatically" value="true" />
+        <option name="importAutomatically" value="true" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1UgwrhtThCXm9ykQoon9IftBU9W" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="true" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/internet-data-impl/src/main/java/org/enargit/karaf/data" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.20943952" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.enargit.karaf.data" />
+      <recent name="org.enargit.karaf" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\_DEV\_git_repos\internet\internet-data-impl\src\main\java\org\enargit\karaf\data" />
+      <recent name="E:\_DEV\_git_repos\internet\internet-core\src\main" />
+      <recent name="E:\_DEV\_git_repos\internet\internet-core\src\main\java\org\enargit\karaf\core" />
+      <recent name="E:\_DEV\_git_repos\internet\internet-data\src\main\java\org\enargit\karaf\data\mapper\impl" />
+      <recent name="E:\_DEV\_git_repos\internet" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\_DEV\_git_repos\internet" />
+    </key>
+  </component>
+  <component name="Regex">
+    <option name="pos1" value="218" />
+    <option name="pos2" value="218" />
+    <option name="pos3" value="162" />
+    <option name="pos4" value="444" />
+    <option name="pos5" value="162" />
+    <option name="autoUpdate" value="true" />
+    <option name="referenceOn" value="false" />
+    <option name="referencePos" value="0" />
+    <option name="showLabels" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="TestCurrentUser.TestCurrentUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="internet-data" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.enargit.karaf.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.enargit.karaf.data.test" />
+      <option name="MAIN_CLASS_NAME" value="org.enargit.karaf.data.test.TestCurrentUser" />
+      <option name="METHOD_NAME" value="TestCurrentUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestCurrentUser.TestCurrentUser" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$/../../projects/akka/akka-http-quickstart-scala" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../projects/akka/akka-quickstart-scala" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../projects/akka/hello-slick-3.1" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../projects/lift/idp" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../projects/lift/ouam" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../projects/play/play-scala-starter-example" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../projects/scala/centaur" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../projects/scala/lift_advanced_bs3" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="98dfa542-643b-4548-83bb-145f735f5cb1" name="Default Changelist" comment="" />
+      <created>1575791746828</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1575791746828</updated>
+      <workItem from="1575791754274" duration="19048000" />
+      <workItem from="1575917066480" duration="3012000" />
+      <workItem from="1576005561680" duration="5810000" />
+      <workItem from="1576082550782" duration="3131000" />
+      <workItem from="1576166443319" duration="12810000" />
+      <workItem from="1576255241720" duration="17234000" />
+      <workItem from="1576277245641" duration="5149000" />
+      <workItem from="1576315589982" duration="10726000" />
+    </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <created>1576316028735</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1576316028735</updated>
+    </task>
+    <task id="LOCAL-00002" summary="initial commit">
+      <created>1576316126384</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1576316126384</updated>
+    </task>
+    <task id="LOCAL-00003" summary="remove targets">
+      <created>1576316246165</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1576316246165</updated>
+    </task>
+    <task id="LOCAL-00004" summary="initial commit">
+      <created>1576316589586</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1576316589586</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="remove targets" />
+    <MESSAGE value="initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="186" key="#Project_Structure" timestamp="1576310636649">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="552" y="186" key="#Project_Structure/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576310636649" />
+    <state x="1270" y="190" key="#com.intellij.ide.util.MemberChooser" timestamp="1576259394827">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1270" y="190" key="#com.intellij.ide.util.MemberChooser/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576259394827" />
+    <state x="607" y="454" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1576329508063">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="607" y="454" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576329508063" />
+    <state x="761" y="414" width="465" height="222" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1576321731068">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="761" y="414" width="465" height="222" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576321731068" />
+    <state x="505" y="0" width="796" height="962" key="CommitChangelistDialog2" timestamp="1576316586236">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="505" y="0" width="796" height="962" key="CommitChangelistDialog2/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576316586236" />
+    <state x="740" y="282" key="FileChooserDialogImpl" timestamp="1576316484139">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="740" y="282" key="FileChooserDialogImpl/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576316484139" />
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1576186018921">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576186018921" />
+    <state width="1877" height="285" key="GridCell.Tab.0.center" timestamp="1576186018921">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.center/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576186018921" />
+    <state width="1877" height="285" key="GridCell.Tab.0.left" timestamp="1576186018921">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.left/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576186018921" />
+    <state width="1877" height="285" key="GridCell.Tab.0.right" timestamp="1576186018921">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.right/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576186018921" />
+    <state x="540" y="270" key="IDE.errors.dialog" timestamp="1575918461790">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="540" y="270" key="IDE.errors.dialog/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1575918461790" />
+    <state x="490" y="182" key="Maven.ArtifactSearchDialog" timestamp="1576083680403">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="490" y="182" key="Maven.ArtifactSearchDialog/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576083680403" />
+    <state x="463" y="170" key="SettingsEditor" timestamp="1576316451327">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="463" y="170" key="SettingsEditor/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576316451327" />
+    <state x="552" y="260" key="Vcs.Push.Dialog.v2" timestamp="1576316600376">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="552" y="260" key="Vcs.Push.Dialog.v2/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576316600376" />
+    <state x="92" y="92" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1576266346430">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="92" y="92" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576266346430" />
+    <state x="250" y="443" width="466" height="277" key="com.intellij.ide.util.TipDialog" timestamp="1576308954827">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="250" y="443" width="466" height="277" key="com.intellij.ide.util.TipDialog/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576308954827" />
+    <state x="342" y="229" key="new project wizard" timestamp="1576329443517">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="342" y="229" key="new project wizard/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576329443517" />
+    <state x="616" y="243" key="run.anything.popup" timestamp="1576184084114">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="616" y="243" key="run.anything.popup/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576184084114" />
+    <state x="623" y="227" key="search.everywhere.popup" timestamp="1576167814604">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="623" y="227" key="search.everywhere.popup/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1576167814604" />
+  </component>
+</project>

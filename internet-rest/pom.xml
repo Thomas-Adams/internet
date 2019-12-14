@@ -52,13 +52,6 @@
             <artifactId>lombok</artifactId>
             <version>1.18.10</version>
         </dependency>
-        <dependency>
-            <groupId>org.enargit.karaf</groupId>
-            <artifactId>internet-data</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
-            <type>jar</type>
-        </dependency>
 
         <dependency>
             <groupId>joda-time</groupId>
@@ -186,6 +179,21 @@
             <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.enargit.karaf</groupId>
+            <artifactId>internet-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.enargit.karaf</groupId>
+            <artifactId>internet-mapper</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.enargit.karaf</groupId>
+            <artifactId>internet-data</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -202,14 +210,16 @@
                             org.enargit.karaf.web.rest.api*;version=${project.version},
                         </Export-Package>
                         <Import-Package>
-                            org.enargit.karaf.data.dao.api*;version=${project.version},
-                            org.enargit.karaf.data.entities*;version=${project.version},
-                            org.enargit.karaf.data.dto*;version=${project.version},
-                            org.enargit.karaf.data.entities.querydsl*;version=${project.version},
-                            org.enargit.karaf.data.enums*;version=${project.version},
-                            org.enargit.karaf.data.pagination*;version=${project.version},
-                            org.enargit.karaf.data.utils*;version=${project.version},
-                            org.enargit.karaf.data.listener*;version=${project.version},
+                            org.enargit.karaf.data.api*;version=${project.version},
+                            org.enargit.karaf.mapper.api*;version=${project.version},
+                            org.enargit.karaf.core.entities*;version=${project.version},
+                            org.enargit.karaf.core.dto*;version=${project.version},
+                            org.enargit.karaf.core.entities.querydsl*;version=${project.version},
+                            org.enargit.karaf.core.enums*;version=${project.version},
+                            org.enargit.karaf.core.pagination*;version=${project.version},
+                            org.enargit.karaf.core.utils*;version=${project.version},
+                            org.enargit.karaf.core.listener*;version=${project.version},
+                            org.enargit.karaf.core.audit*;version=${project.version},
                             org.hibernate.envers.querydsl*;version=${project.version},
                             *
                         </Import-Package>

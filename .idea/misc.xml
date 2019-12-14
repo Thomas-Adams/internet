@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="Osmorc" url="file://$PROJECT_DIR$/internet-core" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/internet-data" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/internet-data-impl" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/internet-mapper" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/internet-mapper-impl" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/internet-rest" />
+    <file type="web" url="file://$PROJECT_DIR$/internet-rest" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="Osmorc">
+    <option name="bndAutoImport" value="true" />
+    <option name="bundlesOutputPath" value="$PROJECT_DIR$/out/bundles" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

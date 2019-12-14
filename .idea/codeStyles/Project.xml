@@ -1,0 +1,36 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <option name="RIGHT_MARGIN" value="160" />
+    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="true" />
+    <AndroidXmlCodeStyleSettings>
+      <option name="LAYOUT_SETTINGS">
+        <value>
+          <option name="INSERT_LINE_BREAK_BEFORE_NAMESPACE_DECLARATION" value="true" />
+        </value>
+      </option>
+      <option name="MANIFEST_SETTINGS">
+        <value>
+          <option name="INSERT_LINE_BREAK_BEFORE_NAMESPACE_DECLARATION" value="true" />
+        </value>
+      </option>
+    </AndroidXmlCodeStyleSettings>
+    <HTMLCodeStyleSettings>
+      <option name="HTML_DO_NOT_INDENT_CHILDREN_OF" value="thead,tbody,tfoot,html" />
+    </HTMLCodeStyleSettings>
+    <codeStyleSettings language="HTML">
+      <option name="RIGHT_MARGIN" value="160" />
+    </codeStyleSettings>
+    <codeStyleSettings language="JSON">
+      <indentOptions>
+        <option name="INDENT_SIZE" value="4" />
+      </indentOptions>
+    </codeStyleSettings>
+    <codeStyleSettings language="Scala">
+      <indentOptions>
+        <option name="INDENT_SIZE" value="4" />
+        <option name="CONTINUATION_INDENT_SIZE" value="4" />
+        <option name="TAB_SIZE" value="4" />
+      </indentOptions>
+    </codeStyleSettings>
+  </code_scheme>
+</component>
