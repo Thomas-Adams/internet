@@ -68,8 +68,8 @@ hs_err_pid*
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
-# *.iml
-# *.ipr
+*.iml
+*.ipr
 
 # CMake
 cmake-build-*/
@@ -246,7 +246,6 @@ dist/
 nbdist/
 .nb-gradle/
 
-!/.idea/
-/internet-data/target/
-/internet-rest/target/
-/internet.iml
+.idea/**
+.classpath
+.project
