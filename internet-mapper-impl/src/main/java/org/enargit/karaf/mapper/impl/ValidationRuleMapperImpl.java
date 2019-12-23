@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.ValidationRuleDTOToValidationRule
 import org.enargit.karaf.mapper.impl.converter.ValidationRuleToValidationRuleDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = ValidationRuleMapper.class, name = "ValidationRuleMapper", immediate = true)
-public class ValidationRuleMapperImpl implements ValidationRuleMapper {
+public class ValidationRuleMapperImpl extends AbstractMapperImpl implements ValidationRuleMapper {
 
     @Override
     public List<ValidationRule> convertToEntityList(List<ValidationRuleDTO> dtoList) {
@@ -43,8 +42,7 @@ public class ValidationRuleMapperImpl implements ValidationRuleMapper {
 
     @Override
     public ValidationRule convertToEntity(ValidationRuleDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<ValidationRuleDTO, ValidationRule> map = modelMapper.createTypeMap(ValidationRuleDTO.class, ValidationRule.class);
         map.addMappings(mapper -> {
             mapper.using(new ValidationRuleDTOToValidationRuleConverter());
@@ -54,8 +52,7 @@ public class ValidationRuleMapperImpl implements ValidationRuleMapper {
 
     @Override
     public ValidationRuleDTO convertToDTO(ValidationRule entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<ValidationRule, ValidationRuleDTO> map = modelMapper.createTypeMap(ValidationRule.class, ValidationRuleDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new ValidationRuleToValidationRuleDTOConverter());

@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = WidgetPropertiesMapper.class, name = "WidgetPropertiesMapper", immediate = true)
-public class WidgetPropertiesMapperImpl implements WidgetPropertiesMapper {
+public class WidgetPropertiesMapperImpl extends AbstractMapperImpl implements WidgetPropertiesMapper {
 
     @Override
     public List<WidgetProperties> convertToEntityList(List<WidgetPropertiesDTO> dtoList) {
@@ -43,8 +43,7 @@ public class WidgetPropertiesMapperImpl implements WidgetPropertiesMapper {
 
     @Override
     public WidgetProperties convertToEntity(WidgetPropertiesDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<WidgetPropertiesDTO, WidgetProperties> map = modelMapper.createTypeMap(WidgetPropertiesDTO.class, WidgetProperties.class);
         map.addMappings(mapper -> {
             mapper.using(new WidgetPropertiesDTOToWidgetPropertiesConverter());
@@ -54,7 +53,7 @@ public class WidgetPropertiesMapperImpl implements WidgetPropertiesMapper {
 
     @Override
     public WidgetPropertiesDTO convertToDTO(WidgetProperties entity) {
-        ModelMapper modelMapper = new ModelMapper();
+        ModelMapper modelMapper = initMapper();
         modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
         TypeMap<WidgetProperties, WidgetPropertiesDTO> map = modelMapper.createTypeMap(WidgetProperties.class, WidgetPropertiesDTO.class);
         map.addMappings(mapper -> {

@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = SubscriptionMapper.class, name = "SubscriptionMapper", immediate = true)
-public class SubscriptionMapperImpl implements SubscriptionMapper {
+public class SubscriptionMapperImpl extends AbstractMapperImpl implements SubscriptionMapper {
 
     @Override
     public List<Subscription> convertToEntityList(List<SubscriptionDTO> dtoList) {
@@ -43,8 +43,7 @@ public class SubscriptionMapperImpl implements SubscriptionMapper {
 
     @Override
     public Subscription convertToEntity(SubscriptionDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<SubscriptionDTO, Subscription> map = modelMapper.createTypeMap(SubscriptionDTO.class, Subscription.class);
         map.addMappings(mapper -> {
             mapper.using(new SubscriptionDTOToSubscriptionConverter());
@@ -54,7 +53,7 @@ public class SubscriptionMapperImpl implements SubscriptionMapper {
 
     @Override
     public SubscriptionDTO convertToDTO(Subscription entity) {
-        ModelMapper modelMapper = new ModelMapper();
+        ModelMapper modelMapper = initMapper();
         modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
         TypeMap<Subscription, SubscriptionDTO> map = modelMapper.createTypeMap(Subscription.class, SubscriptionDTO.class);
         map.addMappings(mapper -> {

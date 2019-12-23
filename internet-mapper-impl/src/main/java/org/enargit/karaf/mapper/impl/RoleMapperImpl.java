@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.RoleDTOToRoleConverter;
 import org.enargit.karaf.mapper.impl.converter.RoleToRoleDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = RoleMapper.class, name = "RoleMapper", immediate = true)
-public class RoleMapperImpl implements RoleMapper {
+public class RoleMapperImpl extends AbstractMapperImpl implements RoleMapper {
 
     @Override
     public List<Role> convertToEntityList(List<RoleDTO> dtoList) {
@@ -43,8 +42,7 @@ public class RoleMapperImpl implements RoleMapper {
 
     @Override
     public Role convertToEntity(RoleDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<RoleDTO, Role> map = modelMapper.createTypeMap(RoleDTO.class, Role.class);
         map.addMappings(mapper -> {
             mapper.using(new RoleDTOToRoleConverter());
@@ -54,8 +52,7 @@ public class RoleMapperImpl implements RoleMapper {
 
     @Override
     public RoleDTO convertToDTO(Role entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<Role, RoleDTO> map = modelMapper.createTypeMap(Role.class, RoleDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new RoleToRoleDTOConverter());
@@ -65,7 +62,7 @@ public class RoleMapperImpl implements RoleMapper {
 
     @Override
     public Page<Role> convertToEntityPage(Page<RoleDTO> dtoPage) {
-        List<Role> entityList = convertToEntityList(dtoPage.getContent()); 
+        List<Role> entityList = convertToEntityList(dtoPage.getContent());
         return new PageImpl<Role>(entityList, PageRequest.of(dtoPage.getNumber(), dtoPage.getSize()), dtoPage.getTotalElements());
     }
 

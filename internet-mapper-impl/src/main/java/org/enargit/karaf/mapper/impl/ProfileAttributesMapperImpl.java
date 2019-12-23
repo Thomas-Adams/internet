@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.ProfileAttributesDTOToProfileAttr
 import org.enargit.karaf.mapper.impl.converter.ProfileAttributesToProfileAttributesDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = ProfileAttributesMapper.class, name = "ProfileAttributesMapper", immediate = true)
-public class ProfileAttributesMapperImpl implements ProfileAttributesMapper {
+public class ProfileAttributesMapperImpl extends AbstractMapperImpl implements ProfileAttributesMapper {
 
     @Override
     public List<ProfileAttributes> convertToEntityList(List<ProfileAttributesDTO> dtoList) {
@@ -43,8 +42,7 @@ public class ProfileAttributesMapperImpl implements ProfileAttributesMapper {
 
     @Override
     public ProfileAttributes convertToEntity(ProfileAttributesDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<ProfileAttributesDTO, ProfileAttributes> map = modelMapper.createTypeMap(ProfileAttributesDTO.class, ProfileAttributes.class);
         map.addMappings(mapper -> {
             mapper.using(new ProfileAttributesDTOToProfileAttributesConverter());
@@ -54,8 +52,7 @@ public class ProfileAttributesMapperImpl implements ProfileAttributesMapper {
 
     @Override
     public ProfileAttributesDTO convertToDTO(ProfileAttributes entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<ProfileAttributes, ProfileAttributesDTO> map = modelMapper.createTypeMap(ProfileAttributes.class, ProfileAttributesDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new ProfileAttributesToProfileAttributesDTOConverter());

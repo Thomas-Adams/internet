@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.SelectionListDTOToSelectionListCo
 import org.enargit.karaf.mapper.impl.converter.SelectionListToSelectionListDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = SelectionListMapper.class, name = "SelectionListMapper", immediate = true)
-public class SelectionListMapperImpl implements SelectionListMapper {
+public class SelectionListMapperImpl extends AbstractMapperImpl implements SelectionListMapper {
 
     @Override
     public List<SelectionList> convertToEntityList(List<SelectionListDTO> dtoList) {
@@ -43,8 +42,7 @@ public class SelectionListMapperImpl implements SelectionListMapper {
 
     @Override
     public SelectionList convertToEntity(SelectionListDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<SelectionListDTO, SelectionList> map = modelMapper.createTypeMap(SelectionListDTO.class, SelectionList.class);
         map.addMappings(mapper -> {
             mapper.using(new SelectionListDTOToSelectionListConverter());
@@ -54,8 +52,7 @@ public class SelectionListMapperImpl implements SelectionListMapper {
 
     @Override
     public SelectionListDTO convertToDTO(SelectionList entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<SelectionList, SelectionListDTO> map = modelMapper.createTypeMap(SelectionList.class, SelectionListDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new SelectionListToSelectionListDTOConverter());

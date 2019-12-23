@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.FormDefinitionDTOToFormDefinition
 import org.enargit.karaf.mapper.impl.converter.FormDefinitionToFormDefinitionDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = FormDefinitionMapper.class, name = "FormDefinitionMapper", immediate = true)
-public class FormDefinitionMapperImpl implements FormDefinitionMapper {
+public class FormDefinitionMapperImpl extends AbstractMapperImpl implements FormDefinitionMapper {
 
     @Override
     public List<FormDefinition> convertToEntityList(List<FormDefinitionDTO> dtoList) {
@@ -43,8 +42,7 @@ public class FormDefinitionMapperImpl implements FormDefinitionMapper {
 
     @Override
     public FormDefinition convertToEntity(FormDefinitionDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<FormDefinitionDTO, FormDefinition> map = modelMapper.createTypeMap(FormDefinitionDTO.class, FormDefinition.class);
         map.addMappings(mapper -> {
             mapper.using(new FormDefinitionDTOToFormDefinitionConverter());
@@ -54,8 +52,7 @@ public class FormDefinitionMapperImpl implements FormDefinitionMapper {
 
     @Override
     public FormDefinitionDTO convertToDTO(FormDefinition entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<FormDefinition, FormDefinitionDTO> map = modelMapper.createTypeMap(FormDefinition.class, FormDefinitionDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new FormDefinitionToFormDefinitionDTOConverter());

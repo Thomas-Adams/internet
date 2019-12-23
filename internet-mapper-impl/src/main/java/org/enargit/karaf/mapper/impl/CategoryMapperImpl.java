@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.CategoryDTOToCategoryConverter;
 import org.enargit.karaf.mapper.impl.converter.CategoryToCategoryDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = CategoryMapper.class, name = "CategoryMapper", immediate = true)
-public class CategoryMapperImpl implements CategoryMapper {
+public class CategoryMapperImpl extends AbstractMapperImpl implements CategoryMapper {
 
     @Override
     public List<Category> convertToEntityList(List<CategoryDTO> dtoList) {
@@ -43,8 +42,7 @@ public class CategoryMapperImpl implements CategoryMapper {
 
     @Override
     public Category convertToEntity(CategoryDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<CategoryDTO, Category> map = modelMapper.createTypeMap(CategoryDTO.class, Category.class);
         map.addMappings(mapper -> {
             mapper.using(new CategoryDTOToCategoryConverter());
@@ -54,8 +52,7 @@ public class CategoryMapperImpl implements CategoryMapper {
 
     @Override
     public CategoryDTO convertToDTO(Category entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<Category, CategoryDTO> map = modelMapper.createTypeMap(Category.class, CategoryDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new CategoryToCategoryDTOConverter());

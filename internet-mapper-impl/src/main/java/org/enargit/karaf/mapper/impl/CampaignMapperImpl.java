@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.CampaignDTOToCampaignConverter;
 import org.enargit.karaf.mapper.impl.converter.CampaignToCampaignDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = CampaignMapper.class, name = "CampaignMapper", immediate = true)
-public class CampaignMapperImpl implements CampaignMapper {
+public class CampaignMapperImpl extends AbstractMapperImpl implements CampaignMapper {
 
     @Override
     public List<Campaign> convertToEntityList(List<CampaignDTO> dtoList) {
@@ -43,8 +42,7 @@ public class CampaignMapperImpl implements CampaignMapper {
 
     @Override
     public Campaign convertToEntity(CampaignDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<CampaignDTO, Campaign> map = modelMapper.createTypeMap(CampaignDTO.class, Campaign.class);
         map.addMappings(mapper -> {
             mapper.using(new CampaignDTOToCampaignConverter());
@@ -54,8 +52,7 @@ public class CampaignMapperImpl implements CampaignMapper {
 
     @Override
     public CampaignDTO convertToDTO(Campaign entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<Campaign, CampaignDTO> map = modelMapper.createTypeMap(Campaign.class, CampaignDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new CampaignToCampaignDTOConverter());

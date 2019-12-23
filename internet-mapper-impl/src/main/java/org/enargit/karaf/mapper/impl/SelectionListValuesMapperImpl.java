@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.SelectionListValuesDTOToSelection
 import org.enargit.karaf.mapper.impl.converter.SelectionListValuesToSelectionListValuesDTOConveter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = SelectionListValuesMapper.class, name = "SelectionListValuesMapper", immediate = true)
-public class SelectionListValuesMapperImpl implements SelectionListValuesMapper {
+public class SelectionListValuesMapperImpl extends AbstractMapperImpl implements SelectionListValuesMapper {
 
     @Override
     public List<SelectionListValues> convertToEntityList(List<SelectionListValuesDTO> dtoList) {
@@ -43,8 +42,7 @@ public class SelectionListValuesMapperImpl implements SelectionListValuesMapper 
 
     @Override
     public SelectionListValues convertToEntity(SelectionListValuesDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<SelectionListValuesDTO, SelectionListValues> map = modelMapper.createTypeMap(SelectionListValuesDTO.class, SelectionListValues.class);
         map.addMappings(mapper -> {
             mapper.using(new SelectionListValuesDTOToSelectionListValuesConveter());
@@ -54,8 +52,7 @@ public class SelectionListValuesMapperImpl implements SelectionListValuesMapper 
 
     @Override
     public SelectionListValuesDTO convertToDTO(SelectionListValues entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<SelectionListValues, SelectionListValuesDTO> map = modelMapper.createTypeMap(SelectionListValues.class, SelectionListValuesDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new SelectionListValuesToSelectionListValuesDTOConveter());

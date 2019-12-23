@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.UserDTOToUserConverter;
 import org.enargit.karaf.mapper.impl.converter.UserToUserDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = UserMapper.class, name = "UserMapper", immediate = true)
-public class UserMapperImpl implements UserMapper {
+public class UserMapperImpl extends AbstractMapperImpl implements UserMapper {
 
     @Override
     public List<User> convertToEntityList(List<UserDTO> dtoList) {
@@ -43,8 +42,7 @@ public class UserMapperImpl implements UserMapper {
 
     @Override
     public User convertToEntity(UserDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<UserDTO, User> map = modelMapper.createTypeMap(UserDTO.class, User.class);
         map.addMappings(mapper -> {
             mapper.using(new UserDTOToUserConverter());
@@ -54,8 +52,7 @@ public class UserMapperImpl implements UserMapper {
 
     @Override
     public UserDTO convertToDTO(User entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<User, UserDTO> map = modelMapper.createTypeMap(User.class, UserDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new UserToUserDTOConverter());

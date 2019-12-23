@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.BlogDTOToBlogConverter;
 import org.enargit.karaf.mapper.impl.converter.BlogToBlogDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = BlogMapper.class, name = "BlogMapper", immediate = true)
-public class BlogMapperImpl implements BlogMapper {
+public class BlogMapperImpl extends AbstractMapperImpl implements BlogMapper {
 
     @Override
     public List<Blog> convertToEntityList(List<BlogDTO> dtoList) {
@@ -43,8 +42,7 @@ public class BlogMapperImpl implements BlogMapper {
 
     @Override
     public Blog convertToEntity(BlogDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper=initMapper();
         TypeMap<BlogDTO, Blog> map = modelMapper.createTypeMap(BlogDTO.class, Blog.class);
         map.addMappings(mapper -> {
             mapper.using(new BlogDTOToBlogConverter());
@@ -54,8 +52,7 @@ public class BlogMapperImpl implements BlogMapper {
 
     @Override
     public BlogDTO convertToDTO(Blog entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper=initMapper();
         TypeMap<Blog, BlogDTO> map = modelMapper.createTypeMap(Blog.class, BlogDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new BlogToBlogDTOConverter());

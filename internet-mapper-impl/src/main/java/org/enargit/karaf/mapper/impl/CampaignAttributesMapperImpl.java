@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.CampaignAttributesDTOToCampaignAt
 import org.enargit.karaf.mapper.impl.converter.CampaignAttributesToCampaignAttributesDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = CampaignAttributesMapper.class, name = "CampaignAttributesMapper", immediate = true)
-public class CampaignAttributesMapperImpl implements CampaignAttributesMapper {
+public class CampaignAttributesMapperImpl extends AbstractMapperImpl implements CampaignAttributesMapper {
 
     @Override
     public List<CampaignAttributes> convertToEntityList(List<CampaignAttributesDTO> dtoList) {
@@ -43,8 +42,7 @@ public class CampaignAttributesMapperImpl implements CampaignAttributesMapper {
 
     @Override
     public CampaignAttributes convertToEntity(CampaignAttributesDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<CampaignAttributesDTO, CampaignAttributes> map = modelMapper.createTypeMap(CampaignAttributesDTO.class, CampaignAttributes.class);
         map.addMappings(mapper -> {
             mapper.using(new CampaignAttributesDTOToCampaignAttributesConverter());
@@ -54,8 +52,7 @@ public class CampaignAttributesMapperImpl implements CampaignAttributesMapper {
 
     @Override
     public CampaignAttributesDTO convertToDTO(CampaignAttributes entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<CampaignAttributes, CampaignAttributesDTO> map = modelMapper.createTypeMap(CampaignAttributes.class, CampaignAttributesDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new CampaignAttributesToCampaignAttributesDTOConverter());

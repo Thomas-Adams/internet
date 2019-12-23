@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.TagDTOToTagConverter;
 import org.enargit.karaf.mapper.impl.converter.TagToTagDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = TagMapper.class, name = "TagMapper", immediate = true)
-public class TagMapperImpl implements TagMapper {
+public class TagMapperImpl extends AbstractMapperImpl implements TagMapper {
 
     @Override
     public List<Tag> convertToEntityList(List<TagDTO> dtoList) {
@@ -43,8 +42,7 @@ public class TagMapperImpl implements TagMapper {
 
     @Override
     public Tag convertToEntity(TagDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<TagDTO, Tag> map = modelMapper.createTypeMap(TagDTO.class, Tag.class);
         map.addMappings(mapper -> {
             mapper.using(new TagDTOToTagConverter());
@@ -54,8 +52,7 @@ public class TagMapperImpl implements TagMapper {
 
     @Override
     public TagDTO convertToDTO(Tag entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<Tag, TagDTO> map = modelMapper.createTypeMap(Tag.class, TagDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new TagToTagDTOConverter());

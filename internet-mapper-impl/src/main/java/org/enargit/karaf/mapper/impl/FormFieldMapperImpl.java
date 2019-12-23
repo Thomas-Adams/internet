@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.FormFieldDTOToFormFieldConverter;
 import org.enargit.karaf.mapper.impl.converter.FormFieldToFormFieldDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = FormFieldMapper.class, name = "FormFieldMapper", immediate = true)
-public class FormFieldMapperImpl implements FormFieldMapper {
+public class FormFieldMapperImpl extends AbstractMapperImpl implements FormFieldMapper {
 
     @Override
     public List<FormField> convertToEntityList(List<FormFieldDTO> dtoList) {
@@ -43,8 +42,7 @@ public class FormFieldMapperImpl implements FormFieldMapper {
 
     @Override
     public FormField convertToEntity(FormFieldDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<FormFieldDTO, FormField> map = modelMapper.createTypeMap(FormFieldDTO.class, FormField.class);
         map.addMappings(mapper -> {
             mapper.using(new FormFieldDTOToFormFieldConverter());
@@ -54,8 +52,7 @@ public class FormFieldMapperImpl implements FormFieldMapper {
 
     @Override
     public FormFieldDTO convertToDTO(FormField entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<FormField, FormFieldDTO> map = modelMapper.createTypeMap(FormField.class, FormFieldDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new FormFieldToFormFieldDTOConverter());

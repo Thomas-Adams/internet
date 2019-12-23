@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.AttributeDTOToAttributeConverter;
 import org.enargit.karaf.mapper.impl.converter.AttributeToAttributeDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = AttributeMapper.class, name = "AttributeMapper", immediate = true)
-public class AttributeMapperImpl implements AttributeMapper {
+public class AttributeMapperImpl extends AbstractMapperImpl implements AttributeMapper {
 
     @Override
     public List<Attribute> convertToEntityList(List<AttributeDTO> dtoList) {
@@ -43,8 +42,7 @@ public class AttributeMapperImpl implements AttributeMapper {
 
     @Override
     public Attribute convertToEntity(AttributeDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<AttributeDTO, Attribute> map = modelMapper.createTypeMap(AttributeDTO.class, Attribute.class);
         map.addMappings(mapper -> {
             mapper.using(new AttributeDTOToAttributeConverter());
@@ -54,8 +52,7 @@ public class AttributeMapperImpl implements AttributeMapper {
 
     @Override
     public AttributeDTO convertToDTO(Attribute entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();;
         TypeMap<Attribute, AttributeDTO> map = modelMapper.createTypeMap(Attribute.class, AttributeDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new AttributeToAttributeDTOConverter());

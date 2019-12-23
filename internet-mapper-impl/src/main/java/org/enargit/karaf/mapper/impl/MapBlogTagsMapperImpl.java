@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.MapBlogTagsDTOToMapBlogTagsConver
 import org.enargit.karaf.mapper.impl.converter.MapBlogTagsToMapBlogTagsDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = MapBlogTagsMapper.class, name = "MapBlogTagsMapper", immediate = true)
-public class MapBlogTagsMapperImpl implements MapBlogTagsMapper {
+public class MapBlogTagsMapperImpl extends AbstractMapperImpl implements MapBlogTagsMapper {
 
     @Override
     public List<MapBlogTags> convertToEntityList(List<MapBlogTagsDTO> dtoList) {
@@ -43,8 +42,7 @@ public class MapBlogTagsMapperImpl implements MapBlogTagsMapper {
 
     @Override
     public MapBlogTags convertToEntity(MapBlogTagsDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper =initMapper();
         TypeMap<MapBlogTagsDTO, MapBlogTags> map = modelMapper.createTypeMap(MapBlogTagsDTO.class, MapBlogTags.class);
         map.addMappings(mapper -> {
             mapper.using(new MapBlogTagsDTOToMapBlogTagsConverter());
@@ -54,8 +52,7 @@ public class MapBlogTagsMapperImpl implements MapBlogTagsMapper {
 
     @Override
     public MapBlogTagsDTO convertToDTO(MapBlogTags entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper =initMapper();
         TypeMap<MapBlogTags, MapBlogTagsDTO> map = modelMapper.createTypeMap(MapBlogTags.class, MapBlogTagsDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new MapBlogTagsToMapBlogTagsDTOConverter());

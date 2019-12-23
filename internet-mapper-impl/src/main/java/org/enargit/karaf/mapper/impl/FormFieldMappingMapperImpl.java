@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.FormFieldMappingDTOToFormFieldMap
 import org.enargit.karaf.mapper.impl.converter.FormFieldMappingToFormFieldMappingDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = FormFieldMappingMapper.class, name = "FormFieldMappingMapper", immediate = true)
-public class FormFieldMappingMapperImpl implements FormFieldMappingMapper {
+public class FormFieldMappingMapperImpl extends AbstractMapperImpl implements FormFieldMappingMapper {
 
     @Override
     public List<FormFieldMapping> convertToEntityList(List<FormFieldMappingDTO> dtoList) {
@@ -43,8 +42,7 @@ public class FormFieldMappingMapperImpl implements FormFieldMappingMapper {
 
     @Override
     public FormFieldMapping convertToEntity(FormFieldMappingDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<FormFieldMappingDTO, FormFieldMapping> map = modelMapper.createTypeMap(FormFieldMappingDTO.class, FormFieldMapping.class);
         map.addMappings(mapper -> {
             mapper.using(new FormFieldMappingDTOToFormFieldMappingConverter());
@@ -54,8 +52,7 @@ public class FormFieldMappingMapperImpl implements FormFieldMappingMapper {
 
     @Override
     public FormFieldMappingDTO convertToDTO(FormFieldMapping entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<FormFieldMapping, FormFieldMappingDTO> map = modelMapper.createTypeMap(FormFieldMapping.class, FormFieldMappingDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new FormFieldMappingToFormFieldMappingDTOConverter());

@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.UserRoleDTOToUserRoleConverter;
 import org.enargit.karaf.mapper.impl.converter.UserRoleToUserRoleDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = UserRoleMapper.class, name = "UserRoleMapper", immediate = true)
-public class UserRoleMapperImpl implements UserRoleMapper {
+public class UserRoleMapperImpl extends AbstractMapperImpl implements UserRoleMapper {
 
     @Override
     public List<UserRole> convertToEntityList(List<UserRoleDTO> dtoList) {
@@ -43,8 +42,7 @@ public class UserRoleMapperImpl implements UserRoleMapper {
 
     @Override
     public UserRole convertToEntity(UserRoleDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<UserRoleDTO, UserRole> map = modelMapper.createTypeMap(UserRoleDTO.class, UserRole.class);
         map.addMappings(mapper -> {
             mapper.using(new UserRoleDTOToUserRoleConverter());
@@ -54,8 +52,7 @@ public class UserRoleMapperImpl implements UserRoleMapper {
 
     @Override
     public UserRoleDTO convertToDTO(UserRole entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<UserRole, UserRoleDTO> map = modelMapper.createTypeMap(UserRole.class, UserRoleDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new UserRoleToUserRoleDTOConverter());

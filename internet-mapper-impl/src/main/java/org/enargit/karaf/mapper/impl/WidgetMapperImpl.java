@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.WidgetDTOToWidgetConverter;
 import org.enargit.karaf.mapper.impl.converter.WidgetToWidgetDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = WidgetMapper.class, name = "WidgetMapper", immediate = true)
-public class WidgetMapperImpl implements WidgetMapper {
+public class WidgetMapperImpl extends AbstractMapperImpl implements WidgetMapper {
 
     @Override
     public List<Widget> convertToEntityList(List<WidgetDTO> dtoList) {
@@ -43,8 +42,7 @@ public class WidgetMapperImpl implements WidgetMapper {
 
     @Override
     public Widget convertToEntity(WidgetDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<WidgetDTO, Widget> map = modelMapper.createTypeMap(WidgetDTO.class, Widget.class);
         map.addMappings(mapper -> {
             mapper.using(new WidgetDTOToWidgetConverter());
@@ -54,8 +52,7 @@ public class WidgetMapperImpl implements WidgetMapper {
 
     @Override
     public WidgetDTO convertToDTO(Widget entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<Widget, WidgetDTO> map = modelMapper.createTypeMap(Widget.class, WidgetDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new WidgetToWidgetDTOConverter());

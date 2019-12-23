@@ -10,7 +10,6 @@ import org.enargit.karaf.mapper.impl.converter.SubscriptionAttributesDTOToSubscr
 import org.enargit.karaf.mapper.impl.converter.SubscriptionAttributesToSubscriptionAttributesDTOConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Component(service = SubscriptionAttributesMapper.class, name = "SubscriptionAttributesMapper", immediate = true)
-public class SubscriptionAttributesMapperImpl implements SubscriptionAttributesMapper {
+public class SubscriptionAttributesMapperImpl extends AbstractMapperImpl implements SubscriptionAttributesMapper {
 
     @Override
     public List<SubscriptionAttributes> convertToEntityList(List<SubscriptionAttributesDTO> dtoList) {
@@ -43,8 +42,7 @@ public class SubscriptionAttributesMapperImpl implements SubscriptionAttributesM
 
     @Override
     public SubscriptionAttributes convertToEntity(SubscriptionAttributesDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<SubscriptionAttributesDTO, SubscriptionAttributes> map = modelMapper.createTypeMap(SubscriptionAttributesDTO.class, SubscriptionAttributes.class);
         map.addMappings(mapper -> {
             mapper.using(new SubscriptionAttributesDTOToSubscriptionAttributesConverter());
@@ -54,8 +52,7 @@ public class SubscriptionAttributesMapperImpl implements SubscriptionAttributesM
 
     @Override
     public SubscriptionAttributesDTO convertToDTO(SubscriptionAttributes entity) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        ModelMapper modelMapper = initMapper();
         TypeMap<SubscriptionAttributes, SubscriptionAttributesDTO> map = modelMapper.createTypeMap(SubscriptionAttributes.class, SubscriptionAttributesDTO.class);
         map.addMappings(mapper -> {
             mapper.using(new SubscriptionAttributesToSubscriptionAttributesDTOConverter());
