@@ -42,7 +42,8 @@
         <jackson.version>2.9.10</jackson.version>
         <cxf.version>3.3.4</cxf.version>
         <joda-time.version>2.9.4</joda-time.version>
-        <slf4j.version>1.7.26</slf4j.version>
+        <slf4j.version>1.7.29</slf4j.version>
+        <camel.version>2.24.2</camel.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <scanPath>org.enargit.karaf</scanPath>
     </properties>

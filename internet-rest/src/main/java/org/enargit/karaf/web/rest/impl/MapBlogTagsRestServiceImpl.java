@@ -1,6 +1,6 @@
 package org.enargit.karaf.web.rest.impl;
 
-import org.enargit.karaf.core.dto.MapBlogTagsDto;
+import org.enargit.karaf.core.dto.MapBlogTagsDTO;
 import org.enargit.karaf.data.api.MapBlogTagsDao;
 import org.enargit.karaf.web.rest.api.MapBlogTagsRestService;
 import org.osgi.service.component.annotations.Component;
@@ -13,27 +13,22 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Singleton
-@Path("/map-blog-tag-service")
-@Component(service = MapBlogTagsRestService.class, immediate = true, property = {
-        JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT +
-                "=(osgi.jaxrs.name=.default)",
-        JaxrsWhiteboardConstants.JAX_RS_RESOURCE + "=true"
-})
+@Component(service = MapBlogTagsRestService.class, immediate = true, property = { JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.name=.default)"
+, JaxrsWhiteboardConstants.JAX_RS_RESOURCE + "=true" })
 public class MapBlogTagsRestServiceImpl implements MapBlogTagsRestService {
 
     volatile MapBlogTagsDao dao;
+
 
     @Reference(service = MapBlogTagsDao.class, bind = "setDao")
     public void setDao(MapBlogTagsDao dao) {
         this.dao = dao;
     }
 
-
-
-    @Override
     public MapBlogTagsDao getDao() {
         return dao;
     }
+
 
     @Override
     public void bind(MapBlogTagsDao dao) {
@@ -47,11 +42,13 @@ public class MapBlogTagsRestServiceImpl implements MapBlogTagsRestService {
         return Long.parseLong(id);
     }
 
+
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path(MapBlogTagsRestService.PATH_PREFIX)
+    @Path(MapBlogTagsRestService.PATH_PREFIX + "" )
     @Override
-    public List<MapBlogTagsDto> getAll() {
+    public List<MapBlogTagsDTO> getAll() {
         return dao.findAllDto();
     }
 
@@ -59,7 +56,7 @@ public class MapBlogTagsRestServiceImpl implements MapBlogTagsRestService {
     @Produces(MediaType.APPLICATION_JSON)
     @Path(MapBlogTagsRestService.PATH_PREFIX + "/{id}" )
     @Override
-    public MapBlogTagsDto getById(@PathParam("id") String id) {
+    public MapBlogTagsDTO getById(@PathParam("id") String id) {
         return dao.findDto(convert(id));
     }
 
@@ -68,7 +65,7 @@ public class MapBlogTagsRestServiceImpl implements MapBlogTagsRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path(MapBlogTagsRestService.PATH_PREFIX + "/{id}" )
     @Override
-    public MapBlogTagsDto update(@PathParam("id") String id, MapBlogTagsDto dto) {
+    public MapBlogTagsDTO update(@PathParam("id") String id, MapBlogTagsDTO dto) {
         return dao.save( dto);
     }
 
@@ -77,7 +74,7 @@ public class MapBlogTagsRestServiceImpl implements MapBlogTagsRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path(MapBlogTagsRestService.PATH_PREFIX )
     @Override
-    public MapBlogTagsDto create(MapBlogTagsDto dto) {
+    public MapBlogTagsDTO create(MapBlogTagsDTO dto) {
         return dao.save(dto);
     }
 
@@ -85,8 +82,8 @@ public class MapBlogTagsRestServiceImpl implements MapBlogTagsRestService {
     @Produces(MediaType.APPLICATION_JSON)
     @Path(MapBlogTagsRestService.PATH_PREFIX + "/{id}" )
     @Override
-    public MapBlogTagsDto deleteById(@PathParam("id") String id) {
-        MapBlogTagsDto dto = dao.findDto(convert(id));
+    public MapBlogTagsDTO deleteById(@PathParam("id") String id) {
+        MapBlogTagsDTO dto = dao.findDto(convert(id));
         dao.delete(convert(id));
         return dto;
     }

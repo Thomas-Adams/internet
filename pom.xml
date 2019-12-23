@@ -15,6 +15,7 @@
         <module>internet-data</module>
         <module>internet-data-impl</module>
         <module>internet-rest</module>
+        <module>internet-code-generation</module>
 
     </modules>
 

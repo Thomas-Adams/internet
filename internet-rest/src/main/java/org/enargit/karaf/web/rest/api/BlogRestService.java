@@ -1,31 +1,27 @@
 package org.enargit.karaf.web.rest.api;
 
-import org.enargit.karaf.core.dto.BlogDto;
-import org.enargit.karaf.core.entities.Blog;
-import org.enargit.karaf.core.entities.querydsl.QBlog;
+import org.enargit.karaf.core.dto.BlogDTO;
 import org.enargit.karaf.data.api.BlogDao;
-import org.enargit.karaf.mapper.api.BlogMapper;
 
 import java.util.List;
 
-public interface BlogRestService extends BasicRestService<Blog, BlogDto, BlogMapper, BlogDao, QBlog, Long> {
+public interface BlogRestService {
 
-    public static String PATH_PREFIX = "/blogs";
+    public static String PATH_PREFIX = "/blog";
 
+    void bind(BlogDao dao);
 
+    BlogDao getDao();
 
-    List<BlogDto> getAll();
+    Long convert(String id);
 
+    List<BlogDTO> getAll();
 
-    BlogDto getById(String id);
+    BlogDTO getById(String id);
 
+    BlogDTO update(String id, BlogDTO entity);
 
+    BlogDTO create(BlogDTO entity);
 
-    BlogDto update(String id, BlogDto entity);
-
-
-    BlogDto create(BlogDto entity);
-
-
-    BlogDto deleteById(String id);
+    BlogDTO deleteById(String id);
 }

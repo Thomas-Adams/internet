@@ -1,117 +1,77 @@
 package org.enargit.karaf.mapper.impl;
 
-
-import org.enargit.karaf.core.dto.BlogDto;
+import org.enargit.karaf.core.dto.BlogDTO;
 import org.enargit.karaf.core.entities.Blog;
+import org.enargit.karaf.core.pagination.Page;
+import org.enargit.karaf.core.pagination.PageImpl;
+import org.enargit.karaf.core.pagination.PageRequest;
 import org.enargit.karaf.mapper.api.BlogMapper;
+import org.enargit.karaf.mapper.impl.converter.BlogDTOToBlogConverter;
+import org.enargit.karaf.mapper.impl.converter.BlogToBlogDTOConverter;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
+import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-@Component(service = BlogMapper.class, immediate = true, name="BlogMapper")
+
+@Component(service = BlogMapper.class, name = "BlogMapper", immediate = true)
 public class BlogMapperImpl implements BlogMapper {
 
-
-
     @Override
-    public List<Blog> convertToEntityList(List<BlogDto> dtoList) {
-        if ( dtoList == null ) {
-            return null;
-        }
-
-        List<Blog> list = new ArrayList<Blog>( dtoList.size() );
-        for ( BlogDto blogDto : dtoList ) {
-            list.add( convertToEntity( blogDto ) );
-        }
-        return list;
+    public List<Blog> convertToEntityList(List<BlogDTO> dtoList) {
+        return dtoList.stream().map(dto -> convertToEntity(dto)).collect(Collectors.toList());
     }
 
     @Override
-    public List<BlogDto> convertToDTOList(List<Blog> entityList) {
-        if ( entityList == null ) {
-            return null;
-        }
-
-        List<BlogDto> list = new ArrayList<BlogDto>( entityList.size() );
-        for ( Blog blog : entityList ) {
-            list.add( convertToDTO( blog ) );
-        }
-
-        return list;
+    public List<BlogDTO> convertToDTOList(List<Blog> entityList) {
+        return entityList.stream().map(entity -> convertToDTO(entity)).collect(Collectors.toList());
     }
 
     @Override
-    public Set<Blog> convertToEntitySet(Set<BlogDto> dtoSet) {
-        if ( dtoSet == null ) {
-            return null;
-        }
-
-        Set<Blog> set = new HashSet<Blog>( Math.max( (int) ( dtoSet.size() / .75f ) + 1, 16 ) );
-        for ( BlogDto blogDto : dtoSet ) {
-            set.add( convertToEntity( blogDto ) );
-        }
-
-        return set;
+    public Set<Blog> convertToEntitySet(Set<BlogDTO> dtoSet) {
+        return dtoSet.stream().map(dto -> convertToEntity(dto)).collect(Collectors.toSet());
     }
 
     @Override
-    public Set<BlogDto> convertToDTOSet(Set<Blog> entitySet) {
-        if ( entitySet == null ) {
-            return null;
-        }
-
-        Set<BlogDto> set = new HashSet<BlogDto>( Math.max( (int) ( entitySet.size() / .75f ) + 1, 16 ) );
-        for ( Blog blog : entitySet ) {
-            set.add( convertToDTO( blog ) );
-        }
-
-        return set;
+    public Set<BlogDTO> convertToDTOSet(Set<Blog> entitySet) {
+        return entitySet.stream().map(entity -> convertToDTO(entity)).collect(Collectors.toSet());
     }
 
     @Override
-    public Blog convertToEntity(BlogDto dto) {
-        if ( dto == null ) {
-            return null;
-        }
-
-        Blog.BlogBuilder<?, ?> blog = Blog.builder();
-
-        blog.id( dto.getId() );
-        blog.version( dto.getVersion() );
-        blog.created( dto.getCreated() );
-        blog.modified( dto.getModified() );
-        blog.createdBy( dto.getCreatedBy() );
-        blog.modifiedBy( dto.getModifiedBy() );
-        blog.title( dto.getTitle() );
-        blog.text( dto.getText() );
-        blog.summary( dto.getSummary() );
-        blog.author( dto.getAuthor() );
-
-        return blog.build();
+    public Blog convertToEntity(BlogDTO dto) {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        TypeMap<BlogDTO, Blog> map = modelMapper.createTypeMap(BlogDTO.class, Blog.class);
+        map.addMappings(mapper -> {
+            mapper.using(new BlogDTOToBlogConverter());
+        });
+        return modelMapper.map(dto, Blog.class);
     }
 
     @Override
-    public BlogDto convertToDTO(Blog entity) {
-        if ( entity == null ) {
-            return null;
-        }
-
-        BlogDto.BlogDtoBuilder<?, ?> blogDto = BlogDto.builder();
-
-        blogDto.id( entity.getId() );
-        blogDto.version( entity.getVersion() );
-        blogDto.created( entity.getCreated() );
-        blogDto.modified( entity.getModified() );
-        blogDto.createdBy( entity.getCreatedBy() );
-        blogDto.modifiedBy( entity.getModifiedBy() );
-        blogDto.title( entity.getTitle() );
-        blogDto.text( entity.getText() );
-        blogDto.summary( entity.getSummary() );
-        blogDto.author( entity.getAuthor() );
-
-        return blogDto.build();
+    public BlogDTO convertToDTO(Blog entity) {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        TypeMap<Blog, BlogDTO> map = modelMapper.createTypeMap(Blog.class, BlogDTO.class);
+        map.addMappings(mapper -> {
+            mapper.using(new BlogToBlogDTOConverter());
+        });
+        return modelMapper.map(entity, BlogDTO.class);
     }
-}
+
+    @Override
+    public Page<Blog> convertToEntityPage(Page<BlogDTO> dtoPage) {
+        List<Blog> entityList = convertToEntityList(dtoPage.getContent()); 
+        return new PageImpl<Blog>(entityList, PageRequest.of(dtoPage.getNumber(), dtoPage.getSize()), dtoPage.getTotalElements());
+    }
+
+    @Override
+    public Page<BlogDTO> convertToDTOPage(Page<Blog> entityPage) {
+        List<BlogDTO> dtoList = convertToDTOList(entityPage.getContent());
+        return new PageImpl<BlogDTO>(dtoList, PageRequest.of(entityPage.getNumber(), entityPage.getSize()), entityPage.getTotalElements());
+    }
+}                                                                

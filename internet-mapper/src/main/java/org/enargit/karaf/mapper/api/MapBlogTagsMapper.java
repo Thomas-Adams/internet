@@ -1,15 +1,28 @@
 package org.enargit.karaf.mapper.api;
 
-
-import org.enargit.karaf.core.dto.MapBlogTagsDto;
+import org.enargit.karaf.core.dto.MapBlogTagsDTO;
 import org.enargit.karaf.core.entities.MapBlogTags;
-import org.mapstruct.Mapper;
+import org.enargit.karaf.core.pagination.Page;
 
-@Mapper
-public interface MapBlogTagsMapper extends BaseMapper<MapBlogTags, MapBlogTagsDto, Long> {
+import java.util.List;
+import java.util.Set;
 
-    MapBlogTags convertToEntity(MapBlogTagsDto dto);
+public interface MapBlogTagsMapper extends BaseMapper  {
 
-    MapBlogTagsDto convertToDTO(MapBlogTags entity);
+        List<MapBlogTags> convertToEntityList(List<MapBlogTagsDTO> dtoList);
+
+        List<MapBlogTagsDTO> convertToDTOList(List<MapBlogTags> entityList);
+
+        Set<MapBlogTags> convertToEntitySet(Set<MapBlogTagsDTO> dtoSet);
+        
+        Set<MapBlogTagsDTO> convertToDTOSet(Set<MapBlogTags> entitySet);
+
+        MapBlogTags convertToEntity(MapBlogTagsDTO dto);
+
+        MapBlogTagsDTO convertToDTO(MapBlogTags entity);
+
+        Page<MapBlogTags> convertToEntityPage(Page<MapBlogTagsDTO> dtoPage);
+
+        Page<MapBlogTagsDTO> convertToDTOPage(Page<MapBlogTags> entityPage);
 
 }

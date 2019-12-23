@@ -1,0 +1,27 @@
+package org.enargit.karaf.web.rest.api;
+
+import org.enargit.karaf.core.dto.${entityName}Dto;
+import org.enargit.karaf.data.api.${entityName}Dao;
+
+import java.util.List;
+
+public interface ${entityName}RestService {
+
+    public static String PATH_PREFIX = "/${entityName?uncap_first}";
+
+    void bind(${entityName}Dao dao);
+
+    ${entityName}Dao getDao();
+
+    Long convert(String id);
+
+    List<${entityName}Dto> getAll();
+
+    ${entityName}Dto getById(String id);
+
+    ${entityName}Dto update(String id, ${entityName}Dto entity);
+
+    ${entityName}Dto create(${entityName}Dto entity);
+
+    ${entityName}Dto deleteById(String id);
+}

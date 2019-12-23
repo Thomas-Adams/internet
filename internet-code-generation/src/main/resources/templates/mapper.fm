@@ -1,0 +1,28 @@
+package org.enargit.karaf.mapper.api;
+
+import org.enargit.karaf.core.dto.${entityName}DTO;
+import org.enargit.karaf.core.entities.${entityName};
+import org.enargit.karaf.core.pagination.Page;
+
+import java.util.List;
+import java.util.Set;
+
+public interface ${entityName}Mapper extends BaseMapper  {
+
+        List<${entityName}> convertToEntityList(List<${entityName}DTO> dtoList);
+
+        List<${entityName}DTO> convertToDTOList(List<${entityName}> entityList);
+
+        Set<${entityName}> convertToEntitySet(Set<${entityName}DTO> dtoSet);
+        
+        Set<${entityName}DTO> convertToDTOSet(Set<${entityName}> entitySet);
+
+        ${entityName} convertToEntity(${entityName}DTO dto);
+
+        ${entityName}DTO convertToDTO(${entityName} entity);
+
+        Page<${entityName}> convertToEntityPage(Page<${entityName}DTO> dtoPage);
+
+        Page<${entityName}DTO> convertToDTOPage(Page<${entityName}> entityPage);
+
+}

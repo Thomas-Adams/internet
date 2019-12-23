@@ -1,24 +1,27 @@
 package org.enargit.karaf.web.rest.api;
 
-import org.enargit.karaf.core.dto.MapBlogTagsDto;
-import org.enargit.karaf.core.entities.MapBlogTags;
-import org.enargit.karaf.core.entities.querydsl.QMapBlogTags;
+import org.enargit.karaf.core.dto.MapBlogTagsDTO;
 import org.enargit.karaf.data.api.MapBlogTagsDao;
-import org.enargit.karaf.mapper.api.MapBlogTagsMapper;
 
 import java.util.List;
 
-public interface MapBlogTagsRestService extends BasicRestService<MapBlogTags, MapBlogTagsDto,MapBlogTagsMapper, MapBlogTagsDao, QMapBlogTags, Long> {
+public interface MapBlogTagsRestService {
 
-    static String PATH_PREFIX = "/map-blog-tags";
+    public static String PATH_PREFIX = "/mapBlogTags";
 
-    List<MapBlogTagsDto> getAll();
+    void bind(MapBlogTagsDao dao);
 
-    MapBlogTagsDto getById( String id);
+    MapBlogTagsDao getDao();
 
-    MapBlogTagsDto update( String id, MapBlogTagsDto entity);
+    Long convert(String id);
 
-    MapBlogTagsDto create(MapBlogTagsDto entity);
+    List<MapBlogTagsDTO> getAll();
 
-    MapBlogTagsDto deleteById(String id);
+    MapBlogTagsDTO getById(String id);
+
+    MapBlogTagsDTO update(String id, MapBlogTagsDTO entity);
+
+    MapBlogTagsDTO create(MapBlogTagsDTO entity);
+
+    MapBlogTagsDTO deleteById(String id);
 }

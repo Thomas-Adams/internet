@@ -1,0 +1,87 @@
+package org.enargit.karaf.web.rest.impl;
+
+import org.enargit.karaf.core.dto.${entityName}Dto;
+import org.enargit.karaf.data.api.${entityName}Dao;
+import org.enargit.karaf.web.rest.api.${entityName}RestService;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
+
+import javax.inject.Singleton;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.util.List;
+
+@Singleton
+@Component(service = ${entityName}RestService.class, immediate = true, property = { JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.name=.default)"
+, JaxrsWhiteboardConstants.JAX_RS_RESOURCE + "=true" })
+public class ${entityName}RestServiceImpl implements ${entityName}RestService {
+
+    volatile ${entityName}Dao dao;
+
+
+    @Reference(service = ${entityName}Dao.class, bind = "setDao")
+    public void setDao(${entityName}Dao dao) {
+        this.dao = dao;
+    }
+
+    public ${entityName}Dao getDao() {
+        return dao;
+    }
+
+
+    @Override
+    public void bind(${entityName}Dao dao) {
+        this.dao = dao;
+    }
+
+
+
+    @Override
+    public Long convert(String id) {
+        return Long.parseLong(id);
+    }
+
+
+
+    @Override
+    public List<${entityName}Dto> getAll() {
+        return dao.findAllDto();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path(${entityName}RestService.PATH_PREFIX + "/{id}" )
+    @Override
+    public ${entityName}Dto getById(@PathParam("id") String id) {
+        return dao.findDto(convert(id));
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path(${entityName}RestService.PATH_PREFIX + "/{id}" )
+    @Override
+    public ${entityName}Dto update(@PathParam("id") String id, ${entityName}Dto dto) {
+        return dao.save( dto);
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path(${entityName}RestService.PATH_PREFIX )
+    @Override
+    public ${entityName}Dto create(${entityName}Dto dto) {
+        return dao.save(dto);
+    }
+
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path(${entityName}RestService.PATH_PREFIX + "/{id}" )
+    @Override
+    public ${entityName}Dto deleteById(@PathParam("id") String id) {
+        ${entityName}Dto dto = dao.findDto(convert(id));
+        dao.delete(convert(id));
+        return dto;
+    }
+}

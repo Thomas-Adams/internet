@@ -1,110 +1,77 @@
 package org.enargit.karaf.mapper.impl;
 
-
-import org.enargit.karaf.core.dto.TagDto;
+import org.enargit.karaf.core.dto.TagDTO;
 import org.enargit.karaf.core.entities.Tag;
+import org.enargit.karaf.core.pagination.Page;
+import org.enargit.karaf.core.pagination.PageImpl;
+import org.enargit.karaf.core.pagination.PageRequest;
 import org.enargit.karaf.mapper.api.TagMapper;
+import org.enargit.karaf.mapper.impl.converter.TagDTOToTagConverter;
+import org.enargit.karaf.mapper.impl.converter.TagToTagDTOConverter;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
+import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-@Component(service = TagMapper.class, immediate = true, name = "TagMapper")
+
+@Component(service = TagMapper.class, name = "TagMapper", immediate = true)
 public class TagMapperImpl implements TagMapper {
 
     @Override
-    public List<Tag> convertToEntityList(List<TagDto> dtoList) {
-        if ( dtoList == null ) {
-            return null;
-        }
-
-        List<Tag> list = new ArrayList<Tag>( dtoList.size() );
-        for ( TagDto tagDto : dtoList ) {
-            list.add( convertToEntity( tagDto ) );
-        }
-
-        return list;
+    public List<Tag> convertToEntityList(List<TagDTO> dtoList) {
+        return dtoList.stream().map(dto -> convertToEntity(dto)).collect(Collectors.toList());
     }
 
     @Override
-    public List<TagDto> convertToDTOList(List<Tag> entityList) {
-        if ( entityList == null ) {
-            return null;
-        }
-
-        List<TagDto> list = new ArrayList<TagDto>( entityList.size() );
-        for ( Tag tag : entityList ) {
-            list.add( convertToDTO( tag ) );
-        }
-
-        return list;
+    public List<TagDTO> convertToDTOList(List<Tag> entityList) {
+        return entityList.stream().map(entity -> convertToDTO(entity)).collect(Collectors.toList());
     }
 
     @Override
-    public Set<Tag> convertToEntitySet(Set<TagDto> dtoSet) {
-        if ( dtoSet == null ) {
-            return null;
-        }
-
-        Set<Tag> set = new HashSet<Tag>( Math.max( (int) ( dtoSet.size() / .75f ) + 1, 16 ) );
-        for ( TagDto tagDto : dtoSet ) {
-            set.add( convertToEntity( tagDto ) );
-        }
-
-        return set;
+    public Set<Tag> convertToEntitySet(Set<TagDTO> dtoSet) {
+        return dtoSet.stream().map(dto -> convertToEntity(dto)).collect(Collectors.toSet());
     }
 
     @Override
-    public Set<TagDto> convertToDTOSet(Set<Tag> entitySet) {
-        if ( entitySet == null ) {
-            return null;
-        }
-
-        Set<TagDto> set = new HashSet<TagDto>( Math.max( (int) ( entitySet.size() / .75f ) + 1, 16 ) );
-        for ( Tag tag : entitySet ) {
-            set.add( convertToDTO( tag ) );
-        }
-
-        return set;
+    public Set<TagDTO> convertToDTOSet(Set<Tag> entitySet) {
+        return entitySet.stream().map(entity -> convertToDTO(entity)).collect(Collectors.toSet());
     }
 
     @Override
-    public Tag convertToEntity(TagDto dto) {
-        if ( dto == null ) {
-            return null;
-        }
-
-        Tag.TagBuilder<?, ?> tag = Tag.builder();
-
-        tag.id( dto.getId() );
-        tag.version( dto.getVersion() );
-        tag.created( dto.getCreated() );
-        tag.modified( dto.getModified() );
-        tag.createdBy( dto.getCreatedBy() );
-        tag.modifiedBy( dto.getModifiedBy() );
-        tag.name( dto.getName() );
-
-        return tag.build();
+    public Tag convertToEntity(TagDTO dto) {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        TypeMap<TagDTO, Tag> map = modelMapper.createTypeMap(TagDTO.class, Tag.class);
+        map.addMappings(mapper -> {
+            mapper.using(new TagDTOToTagConverter());
+        });
+        return modelMapper.map(dto, Tag.class);
     }
 
     @Override
-    public TagDto convertToDTO(Tag entity) {
-        if ( entity == null ) {
-            return null;
-        }
-
-        TagDto.TagDtoBuilder<?, ?> tagDto = TagDto.builder();
-
-        tagDto.id( entity.getId() );
-        tagDto.version( entity.getVersion() );
-        tagDto.created( entity.getCreated() );
-        tagDto.modified( entity.getModified() );
-        tagDto.createdBy( entity.getCreatedBy() );
-        tagDto.modifiedBy( entity.getModifiedBy() );
-        tagDto.name( entity.getName() );
-
-        return tagDto.build();
+    public TagDTO convertToDTO(Tag entity) {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        TypeMap<Tag, TagDTO> map = modelMapper.createTypeMap(Tag.class, TagDTO.class);
+        map.addMappings(mapper -> {
+            mapper.using(new TagToTagDTOConverter());
+        });
+        return modelMapper.map(entity, TagDTO.class);
     }
-}
+
+    @Override
+    public Page<Tag> convertToEntityPage(Page<TagDTO> dtoPage) {
+        List<Tag> entityList = convertToEntityList(dtoPage.getContent()); 
+        return new PageImpl<Tag>(entityList, PageRequest.of(dtoPage.getNumber(), dtoPage.getSize()), dtoPage.getTotalElements());
+    }
+
+    @Override
+    public Page<TagDTO> convertToDTOPage(Page<Tag> entityPage) {
+        List<TagDTO> dtoList = convertToDTOList(entityPage.getContent());
+        return new PageImpl<TagDTO>(dtoList, PageRequest.of(entityPage.getNumber(), entityPage.getSize()), entityPage.getTotalElements());
+    }
+}                                                                

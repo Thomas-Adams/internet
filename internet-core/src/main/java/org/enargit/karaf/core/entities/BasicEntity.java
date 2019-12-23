@@ -19,7 +19,7 @@ import java.util.Date;
 @SuperBuilder
 @Data
 @MappedSuperclass
-public abstract class BasicEntity<ID> implements Serializable {
+public class BasicEntity<ID> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

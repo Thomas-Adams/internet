@@ -2,8 +2,9 @@
 ####1. Install features for JPA in Apache Karaf:
     
    ```
-   feature:install jpa transaction jdbc jndi pax-jdbc pax-jdbc-config hibernate hibernate-envers scr war webconsole
+   feature:install jpa transaction jdbc jndi pax-jdbc pax-jdbc-config hibernate hibernate-envers hibernate-validator scr war webconsole
    ```
+
 
 ####2. Install additional bundles:
     
@@ -24,6 +25,10 @@
    ``` 
      install -s mvn:com.querydsl/querydsl-jpa/4.2.2
    ```
+
+   ``` 
+     install -s mvn:org.modelmapper/modelmapper/2.3.5
+   ``` 
 
 ####3. Install Apache Karaf CXF feature
 

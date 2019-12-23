@@ -1,25 +1,27 @@
 package org.enargit.karaf.web.rest.api;
 
-import org.enargit.karaf.core.dto.TagDto;
-import org.enargit.karaf.core.entities.Tag;
-import org.enargit.karaf.core.entities.querydsl.QTag;
+import org.enargit.karaf.core.dto.TagDTO;
 import org.enargit.karaf.data.api.TagDao;
-import org.enargit.karaf.mapper.api.TagMapper;
 
 import java.util.List;
 
-public interface TagRestService extends BasicRestService<Tag,TagDto, TagMapper, TagDao, QTag, Long> {
+public interface TagRestService {
 
-    static String PATH_PREFIX = "/tags";
+    public static String PATH_PREFIX = "/tag";
 
+    void bind(TagDao dao);
 
-    List<TagDto> getAll();
+    TagDao getDao();
 
-    TagDto getById(String id);
+    Long convert(String id);
 
-    TagDto update( String id, TagDto entity);
+    List<TagDTO> getAll();
 
-    TagDto create(TagDto entity);
+    TagDTO getById(String id);
 
-    TagDto deleteById(String id);
+    TagDTO update(String id, TagDTO entity);
+
+    TagDTO create(TagDTO entity);
+
+    TagDTO deleteById(String id);
 }

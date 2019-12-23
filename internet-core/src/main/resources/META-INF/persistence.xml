@@ -6,6 +6,29 @@
     <persistence-unit name="internetm_data" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <non-jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=internetm_data)</non-jta-data-source>
+        <class>org.enargit.karaf.core.entities.Attribute</class>
+        <class>org.enargit.karaf.core.entities.UserRole</class>
+        <class>org.enargit.karaf.core.entities.User</class>
+        <class>org.enargit.karaf.core.entities.FormFieldMapping</class>
+        <class>org.enargit.karaf.core.entities.FormField</class>
+        <class>org.enargit.karaf.core.entities.Role</class>
+        <class>org.enargit.karaf.core.entities.Profile</class>
+        <class>org.enargit.karaf.core.entities.Category</class>
+        <class>org.enargit.karaf.core.entities.Campaign</class>
+        <class>org.enargit.karaf.core.entities.CampaignAttributes</class>
+        <class>org.enargit.karaf.core.entities.FormDefinition</class>
+        <class>org.enargit.karaf.core.entities.MapBlogTags</class>
+        <class>org.enargit.karaf.core.entities.Blog</class>
+        <class>org.enargit.karaf.core.entities.ProfileAttributes</class>
+        <class>org.enargit.karaf.core.entities.SelectionList</class>
+        <class>org.enargit.karaf.core.entities.SelectionListValues</class>
+        <class>org.enargit.karaf.core.entities.Subscription</class>
+        <class>org.enargit.karaf.core.entities.SubscriptionAttributes</class>
+        <class>org.enargit.karaf.core.entities.Tag</class>
+        <class>org.enargit.karaf.core.entities.ValidationRule</class>
+        <class>org.enargit.karaf.core.entities.Widget</class>
+        <class>org.enargit.karaf.core.entities.WidgetProperties</class>
+        <class>org.enargit.karaf.core.entities.BaseRevisionEntity</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>

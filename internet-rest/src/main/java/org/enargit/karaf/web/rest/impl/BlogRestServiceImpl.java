@@ -1,6 +1,6 @@
 package org.enargit.karaf.web.rest.impl;
 
-import org.enargit.karaf.core.dto.BlogDto;
+import org.enargit.karaf.core.dto.BlogDTO;
 import org.enargit.karaf.data.api.BlogDao;
 import org.enargit.karaf.web.rest.api.BlogRestService;
 import org.osgi.service.component.annotations.Component;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Singleton
 @Component(service = BlogRestService.class, immediate = true, property = { JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.name=.default)"
-        , JaxrsWhiteboardConstants.JAX_RS_RESOURCE + "=true" })
+, JaxrsWhiteboardConstants.JAX_RS_RESOURCE + "=true" })
 public class BlogRestServiceImpl implements BlogRestService {
 
     volatile BlogDao dao;
@@ -43,9 +43,11 @@ public class BlogRestServiceImpl implements BlogRestService {
     }
 
 
-
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path(BlogRestService.PATH_PREFIX + "" )
     @Override
-    public List<BlogDto> getAll() {
+    public List<BlogDTO> getAll() {
         return dao.findAllDto();
     }
 
@@ -53,7 +55,7 @@ public class BlogRestServiceImpl implements BlogRestService {
     @Produces(MediaType.APPLICATION_JSON)
     @Path(BlogRestService.PATH_PREFIX + "/{id}" )
     @Override
-    public BlogDto getById(@PathParam("id") String id) {
+    public BlogDTO getById(@PathParam("id") String id) {
         return dao.findDto(convert(id));
     }
 
@@ -62,7 +64,7 @@ public class BlogRestServiceImpl implements BlogRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path(BlogRestService.PATH_PREFIX + "/{id}" )
     @Override
-    public BlogDto update(@PathParam("id") String id, BlogDto dto) {
+    public BlogDTO update(@PathParam("id") String id, BlogDTO dto) {
         return dao.save( dto);
     }
 
@@ -71,7 +73,7 @@ public class BlogRestServiceImpl implements BlogRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path(BlogRestService.PATH_PREFIX )
     @Override
-    public BlogDto create(BlogDto dto) {
+    public BlogDTO create(BlogDTO dto) {
         return dao.save(dto);
     }
 
@@ -79,8 +81,8 @@ public class BlogRestServiceImpl implements BlogRestService {
     @Produces(MediaType.APPLICATION_JSON)
     @Path(BlogRestService.PATH_PREFIX + "/{id}" )
     @Override
-    public BlogDto deleteById(@PathParam("id") String id) {
-        BlogDto dto = dao.findDto(convert(id));
+    public BlogDTO deleteById(@PathParam("id") String id) {
+        BlogDTO dto = dao.findDto(convert(id));
         dao.delete(convert(id));
         return dto;
     }

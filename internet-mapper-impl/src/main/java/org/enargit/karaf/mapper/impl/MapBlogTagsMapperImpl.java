@@ -1,112 +1,77 @@
 package org.enargit.karaf.mapper.impl;
 
-
-import org.enargit.karaf.core.dto.MapBlogTagsDto;
+import org.enargit.karaf.core.dto.MapBlogTagsDTO;
 import org.enargit.karaf.core.entities.MapBlogTags;
+import org.enargit.karaf.core.pagination.Page;
+import org.enargit.karaf.core.pagination.PageImpl;
+import org.enargit.karaf.core.pagination.PageRequest;
 import org.enargit.karaf.mapper.api.MapBlogTagsMapper;
+import org.enargit.karaf.mapper.impl.converter.MapBlogTagsDTOToMapBlogTagsConverter;
+import org.enargit.karaf.mapper.impl.converter.MapBlogTagsToMapBlogTagsDTOConverter;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
+import org.modelmapper.convention.MatchingStrategies;
 import org.osgi.service.component.annotations.Component;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-@Component(service = MapBlogTagsMapper.class, immediate = true, name="MapBlogTagsMapper")
+
+@Component(service = MapBlogTagsMapper.class, name = "MapBlogTagsMapper", immediate = true)
 public class MapBlogTagsMapperImpl implements MapBlogTagsMapper {
 
     @Override
-    public List<MapBlogTags> convertToEntityList(List<MapBlogTagsDto> dtoList) {
-        if ( dtoList == null ) {
-            return null;
-        }
-
-        List<MapBlogTags> list = new ArrayList<MapBlogTags>( dtoList.size() );
-        for ( MapBlogTagsDto mapBlogTagsDto : dtoList ) {
-            list.add( convertToEntity( mapBlogTagsDto ) );
-        }
-
-        return list;
+    public List<MapBlogTags> convertToEntityList(List<MapBlogTagsDTO> dtoList) {
+        return dtoList.stream().map(dto -> convertToEntity(dto)).collect(Collectors.toList());
     }
 
     @Override
-    public List<MapBlogTagsDto> convertToDTOList(List<MapBlogTags> entityList) {
-        if ( entityList == null ) {
-            return null;
-        }
-
-        List<MapBlogTagsDto> list = new ArrayList<MapBlogTagsDto>( entityList.size() );
-        for ( MapBlogTags mapBlogTags : entityList ) {
-            list.add( convertToDTO( mapBlogTags ) );
-        }
-
-        return list;
+    public List<MapBlogTagsDTO> convertToDTOList(List<MapBlogTags> entityList) {
+        return entityList.stream().map(entity -> convertToDTO(entity)).collect(Collectors.toList());
     }
 
     @Override
-    public Set<MapBlogTags> convertToEntitySet(Set<MapBlogTagsDto> dtoSet) {
-        if ( dtoSet == null ) {
-            return null;
-        }
-
-        Set<MapBlogTags> set = new HashSet<MapBlogTags>( Math.max( (int) ( dtoSet.size() / .75f ) + 1, 16 ) );
-        for ( MapBlogTagsDto mapBlogTagsDto : dtoSet ) {
-            set.add( convertToEntity( mapBlogTagsDto ) );
-        }
-
-        return set;
+    public Set<MapBlogTags> convertToEntitySet(Set<MapBlogTagsDTO> dtoSet) {
+        return dtoSet.stream().map(dto -> convertToEntity(dto)).collect(Collectors.toSet());
     }
 
     @Override
-    public Set<MapBlogTagsDto> convertToDTOSet(Set<MapBlogTags> entitySet) {
-        if ( entitySet == null ) {
-            return null;
-        }
-
-        Set<MapBlogTagsDto> set = new HashSet<MapBlogTagsDto>( Math.max( (int) ( entitySet.size() / .75f ) + 1, 16 ) );
-        for ( MapBlogTags mapBlogTags : entitySet ) {
-            set.add( convertToDTO( mapBlogTags ) );
-        }
-
-        return set;
+    public Set<MapBlogTagsDTO> convertToDTOSet(Set<MapBlogTags> entitySet) {
+        return entitySet.stream().map(entity -> convertToDTO(entity)).collect(Collectors.toSet());
     }
 
     @Override
-    public MapBlogTags convertToEntity(MapBlogTagsDto dto) {
-        if ( dto == null ) {
-            return null;
-        }
-
-        MapBlogTags.MapBlogTagsBuilder<?, ?> mapBlogTags = MapBlogTags.builder();
-
-        mapBlogTags.id( dto.getId() );
-        mapBlogTags.version( dto.getVersion() );
-        mapBlogTags.created( dto.getCreated() );
-        mapBlogTags.modified( dto.getModified() );
-        mapBlogTags.createdBy( dto.getCreatedBy() );
-        mapBlogTags.modifiedBy( dto.getModifiedBy() );
-        mapBlogTags.blog( dto.getBlog() );
-        mapBlogTags.tag( dto.getTag() );
-
-        return mapBlogTags.build();
+    public MapBlogTags convertToEntity(MapBlogTagsDTO dto) {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        TypeMap<MapBlogTagsDTO, MapBlogTags> map = modelMapper.createTypeMap(MapBlogTagsDTO.class, MapBlogTags.class);
+        map.addMappings(mapper -> {
+            mapper.using(new MapBlogTagsDTOToMapBlogTagsConverter());
+        });
+        return modelMapper.map(dto, MapBlogTags.class);
     }
 
     @Override
-    public MapBlogTagsDto convertToDTO(MapBlogTags entity) {
-        if ( entity == null ) {
-            return null;
-        }
-
-        MapBlogTagsDto.MapBlogTagsDtoBuilder<?, ?> mapBlogTagsDto = MapBlogTagsDto.builder();
-
-        mapBlogTagsDto.id( entity.getId() );
-        mapBlogTagsDto.version( entity.getVersion() );
-        mapBlogTagsDto.created( entity.getCreated() );
-        mapBlogTagsDto.modified( entity.getModified() );
-        mapBlogTagsDto.createdBy( entity.getCreatedBy() );
-        mapBlogTagsDto.modifiedBy( entity.getModifiedBy() );
-        mapBlogTagsDto.blog( entity.getBlog() );
-        mapBlogTagsDto.tag( entity.getTag() );
-
-        return mapBlogTagsDto.build();
+    public MapBlogTagsDTO convertToDTO(MapBlogTags entity) {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setDeepCopyEnabled(true).setMatchingStrategy(MatchingStrategies.LOOSE);
+        TypeMap<MapBlogTags, MapBlogTagsDTO> map = modelMapper.createTypeMap(MapBlogTags.class, MapBlogTagsDTO.class);
+        map.addMappings(mapper -> {
+            mapper.using(new MapBlogTagsToMapBlogTagsDTOConverter());
+        });
+        return modelMapper.map(entity, MapBlogTagsDTO.class);
     }
-}
+
+    @Override
+    public Page<MapBlogTags> convertToEntityPage(Page<MapBlogTagsDTO> dtoPage) {
+        List<MapBlogTags> entityList = convertToEntityList(dtoPage.getContent()); 
+        return new PageImpl<MapBlogTags>(entityList, PageRequest.of(dtoPage.getNumber(), dtoPage.getSize()), dtoPage.getTotalElements());
+    }
+
+    @Override
+    public Page<MapBlogTagsDTO> convertToDTOPage(Page<MapBlogTags> entityPage) {
+        List<MapBlogTagsDTO> dtoList = convertToDTOList(entityPage.getContent());
+        return new PageImpl<MapBlogTagsDTO>(dtoList, PageRequest.of(entityPage.getNumber(), entityPage.getSize()), entityPage.getTotalElements());
+    }
+}                                                                

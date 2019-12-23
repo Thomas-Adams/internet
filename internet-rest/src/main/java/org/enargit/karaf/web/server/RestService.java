@@ -3,17 +3,13 @@ package org.enargit.karaf.web.server;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import org.apache.cxf.Bus;
-import org.apache.cxf.BusFactory;
 import org.apache.cxf.binding.BindingFactoryManager;
-import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSBindingFactory;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.impl.RuntimeDelegateImpl;
 import org.apache.cxf.transport.http.HttpDestinationFactory;
 import org.apache.cxf.transport.servlet.ServletDestinationFactory;
-import org.enargit.karaf.web.rest.api.BlogRestService;
-import org.enargit.karaf.web.rest.api.MapBlogTagsRestService;
-import org.enargit.karaf.web.rest.api.TagRestService;
+import org.enargit.karaf.web.rest.api.*;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
@@ -33,6 +29,66 @@ public class RestService {
     volatile BlogRestService blogRestService;
 
     @Reference
+    volatile AttributeRestService attributeRestService;
+
+    @Reference
+    volatile CampaignRestService campaignRestService;
+
+    @Reference
+    volatile CampaignAttributesRestService campaignAttributesRestService;
+
+    @Reference
+    volatile CategoryRestService categoryRestService;
+
+    @Reference
+    volatile FormDefinitionRestService formDefinitionRestService;
+
+    @Reference
+    volatile FormFieldMappingRestService formFieldMappingRestService;
+
+    @Reference
+    volatile FormFieldRestService formFieldRestService;
+
+    @Reference
+    volatile ProfileAttributesRestService profileAttributesRestService;
+
+    @Reference
+    volatile ProfileRestService profileRestService;
+
+    @Reference
+    volatile RoleRestService roleRestService;
+
+    @Reference
+    volatile SelectionListRestService selectionListRestService;
+
+    @Reference
+    volatile SelectionListValuesRestService selectionListValuesRestService;
+
+    @Reference
+    volatile SubscriptionAttributesRestService subscriptionAttributesRestService;
+
+    @Reference
+    volatile SubscriptionRestService subscriptionRestService;
+
+    @Reference
+    volatile UserRestService userRestService;
+
+    @Reference
+    volatile UserRoleRestService userRoleRestService;
+
+    @Reference
+    volatile ValidationRuleRestService validationRuleRestService;
+
+    @Reference
+    volatile WidgetPropertiesRestService widgetPropertiesRestService;
+
+    @Reference
+    volatile WidgetRestService widgetRestService;
+
+
+
+
+    @Reference
     volatile MapBlogTagsRestService mapBlogTagsRestService;
 
     @Activate
@@ -40,7 +96,11 @@ public class RestService {
         serverFactory = new JAXRSServerFactoryBean();
         RuntimeDelegate.setInstance(new RuntimeDelegateImpl());
         serverFactory.setAddress("/api");
-        serverFactory.setServiceBeanObjects(tagRestService, mapBlogTagsRestService, blogRestService);
+        serverFactory.setServiceBeanObjects(tagRestService, mapBlogTagsRestService,
+                blogRestService, campaignAttributesRestService, campaignRestService, categoryRestService,
+                formDefinitionRestService, formFieldMappingRestService, formFieldRestService, profileAttributesRestService,
+                profileRestService, roleRestService, selectionListRestService, selectionListValuesRestService, subscriptionAttributesRestService,
+                subscriptionRestService, userRestService, userRoleRestService, validationRuleRestService, widgetPropertiesRestService, widgetRestService);
         serverFactory.setProvider(new JacksonJsonProvider());
 
         final ServletDestinationFactory destinationFactory = new ServletDestinationFactory();

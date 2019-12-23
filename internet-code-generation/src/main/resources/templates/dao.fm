@@ -1,0 +1,88 @@
+package org.enargit.karaf.data.api;
+
+
+import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.Predicate;
+import org.apache.aries.jpa.template.JpaTemplate;
+import org.enargit.karaf.core.dto.${entityName}Dto;
+import org.enargit.karaf.core.entities.${entityName};
+import org.enargit.karaf.core.pagination.Page;
+import org.enargit.karaf.core.pagination.Pageable;
+import org.enargit.karaf.mapper.api.${entityName}Mapper;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+public interface ${entityName}Dao {
+
+    ${entityName}Mapper getMapper();
+
+    void setMapper(${entityName}Mapper mapper);
+
+    JpaTemplate getJpaTemplate();
+
+    void setJpaTemplate(JpaTemplate jpaTemplate);
+
+    ${entityName} find(Long id);
+
+    ${entityName}Dto findDto(Long id);
+
+    List<${entityName}> findAll();
+
+    List<${entityName}Dto> findAllDto();
+
+    void persist(${entityName} entity);
+
+    ${entityName} merge(${entityName} entity);
+
+    ${entityName}Dto merge(${entityName}Dto dto);
+
+    ${entityName} save(${entityName} entity);
+
+    ${entityName}Dto save(${entityName}Dto dto);
+
+    ${entityName}Dto create(${entityName}Dto dto);
+
+    ${entityName} create(${entityName} entity);
+
+    void delete(Long id);
+
+    List<${entityName}> findAll(Predicate predicate, OrderSpecifier<?>... orderSpecifiers);
+
+    List<${entityName}Dto> findAllDto(Predicate predicate, OrderSpecifier<?>... orderSpecifiers);
+
+    Page<${entityName}> findAll(Pageable pageable);
+
+    Page<${entityName}Dto> findAllDto(Pageable pageable);
+
+    Page<${entityName}> findAll(Pageable pageable, Predicate predicate);
+
+    Page<${entityName}Dto> findAllDto(Pageable pageable, Predicate predicate);
+
+    List<${entityName}> findAllByPredicate(Predicate predicate);
+
+    List<${entityName}Dto> findAllDtoByPredicate(Predicate predicate);
+
+    void deleteInBatch(Iterable<${entityName}> entities);
+
+    List<${entityName}> saveAll(List<${entityName}> entities);
+
+    List<${entityName}Dto> saveAllDto(List<${entityName}Dto> dtos);
+
+    Set<${entityName}> saveAll(Set<${entityName}> entities);
+
+    Set<${entityName}Dto> saveAllDto(Set<${entityName}Dto> dtos);
+
+    long count();
+
+    long count(Predicate predicate);
+
+    boolean exists(Predicate predicate);
+
+    boolean exists(Long id);
+
+    Optional<${entityName}> findOne(Predicate predicate);
+
+    Optional<${entityName}Dto> findOneDto(Predicate predicate);
+}
