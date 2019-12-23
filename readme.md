@@ -1,12 +1,12 @@
 
-####1. Install features for JPA in Apache Karaf:
+#### 1. Install features for JPA in Apache Karaf:
     
    ```
    feature:install jpa transaction jdbc jndi pax-jdbc pax-jdbc-config hibernate hibernate-envers hibernate-validator scr war webconsole
    ```
 
 
-####2. Install additional bundles:
+#### 2. Install additional bundles:
     
    ``` 
      install -s mvn:org.postgresql/postgresql/42.2.8
@@ -30,7 +30,7 @@
      install -s mvn:org.modelmapper/modelmapper/2.3.5
    ``` 
 
-####3. Install Apache Karaf CXF feature
+#### 3. Install Apache Karaf CXF feature
 
    ```
      feature:repo-add cxf 3.3.4
@@ -38,7 +38,7 @@
    ```
   
 
-####4. Create a datasource in Apache Karaf
+#### 4. Create a datasource in Apache Karaf
     
    ```
    karaf@root()> jdbc:ds-create  --driverClass org.postgresql.Driver -url "jdbc:postgresql://localhost:5432/internetm_data" -u postgres -p postgres  internetm_data
@@ -51,7 +51,7 @@
    ![Datasource](datasource-karaf.png)
    
    
-####5. Install module **internet-data** via bundle:install
+#### 5. Install module **internet-data** via bundle:install
     
    ```
    bundle:install file:E:/_DEV/_git_repos/internet/internet-data/target/internet-data-1.0.0.jar
@@ -59,7 +59,7 @@
    
    after that start the bundle, and very the components in the webconsole.
 
-####6. Install module **internet-rest** via bundle:install
+#### 6. Install module **internet-rest** via bundle:install
    
    ```
    bundle:install file:E:/_DEV/_git_repos/internet/internet-rest/target/internet-rest-1.0.0.jar
