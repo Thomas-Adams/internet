@@ -13,6 +13,9 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -36,6 +39,7 @@ public class CampaignDTO extends BasicDTO<Long> {
 
     @NotNull
     private boolean hasMailings;
+
 
     @Builder.Default
     @JsonManagedReference("campaign-campaign-attributes-dto")

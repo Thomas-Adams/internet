@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -29,6 +31,7 @@ public class RoleDTO extends BasicDTO<Long> {
 
     @Size(max=10485760)
     private String description;
+
 
     @Builder.Default
     @JsonManagedReference("role-user-role-dto")

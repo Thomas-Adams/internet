@@ -15,6 +15,9 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -29,6 +32,7 @@ public class SelectionListDTO extends BasicDTO<Long> {
     private AttributeDTO attribute;
 
     private DataTypes listType;
+
 
     @Builder.Default
     @JsonManagedReference("selection-list-selection-list-values-dto")

@@ -16,6 +16,8 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -45,9 +47,11 @@ public class AttributeDTO extends BasicDTO<Long> {
     @JsonBackReference("category-attribute-dto")
     private CategoryDTO category;
 
+
     @Builder.Default
     @JsonManagedReference("attribute-selection-list-dto")
     private List<SelectionListDTO> selectionLists = new ArrayList<>(0);
+
 
     @Builder.Default
     @JsonManagedReference("attribute-form-field-mapping-dto")

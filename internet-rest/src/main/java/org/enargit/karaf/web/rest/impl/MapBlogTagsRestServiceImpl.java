@@ -1,6 +1,8 @@
 package org.enargit.karaf.web.rest.impl;
 
 import org.enargit.karaf.core.dto.MapBlogTagsDTO;
+import org.enargit.karaf.core.pagination.Page;
+import org.enargit.karaf.core.pagination.PageRequest;
 import org.enargit.karaf.data.api.MapBlogTagsDao;
 import org.enargit.karaf.web.rest.api.MapBlogTagsRestService;
 import org.osgi.service.component.annotations.Component;
@@ -45,7 +47,7 @@ public class MapBlogTagsRestServiceImpl implements MapBlogTagsRestService {
 
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
     @Path(MapBlogTagsRestService.PATH_PREFIX + "" )
     @Override
     public List<MapBlogTagsDTO> getAll() {
@@ -53,7 +55,7 @@ public class MapBlogTagsRestServiceImpl implements MapBlogTagsRestService {
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
     @Path(MapBlogTagsRestService.PATH_PREFIX + "/{id}" )
     @Override
     public MapBlogTagsDTO getById(@PathParam("id") String id) {
@@ -61,8 +63,8 @@ public class MapBlogTagsRestServiceImpl implements MapBlogTagsRestService {
     }
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path(MapBlogTagsRestService.PATH_PREFIX + "/{id}" )
     @Override
     public MapBlogTagsDTO update(@PathParam("id") String id, MapBlogTagsDTO dto) {
@@ -70,8 +72,8 @@ public class MapBlogTagsRestServiceImpl implements MapBlogTagsRestService {
     }
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path(MapBlogTagsRestService.PATH_PREFIX )
     @Override
     public MapBlogTagsDTO create(MapBlogTagsDTO dto) {
@@ -79,12 +81,20 @@ public class MapBlogTagsRestServiceImpl implements MapBlogTagsRestService {
     }
 
     @DELETE
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
     @Path(MapBlogTagsRestService.PATH_PREFIX + "/{id}" )
     @Override
     public MapBlogTagsDTO deleteById(@PathParam("id") String id) {
         MapBlogTagsDTO dto = dao.findDto(convert(id));
         dao.delete(convert(id));
         return dto;
+    }
+
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path(MapBlogTagsRestService.PATH_PREFIX + "")
+    @Override
+    public Page<MapBlogTagsDTO> getPage(@QueryParam("page") int page, @QueryParam("size") int size) {
+        return dao.findAllDto(PageRequest.of(page, size));
     }
 }

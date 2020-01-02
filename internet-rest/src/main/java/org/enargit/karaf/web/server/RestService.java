@@ -1,6 +1,7 @@
 package org.enargit.karaf.web.server;
 
 
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import org.apache.cxf.Bus;
 import org.apache.cxf.binding.BindingFactoryManager;
@@ -15,7 +16,12 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.RuntimeDelegate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component(immediate = true, service = RestService.class)
 public class RestService {
@@ -101,7 +107,16 @@ public class RestService {
                 formDefinitionRestService, formFieldMappingRestService, formFieldRestService, profileAttributesRestService,
                 profileRestService, roleRestService, selectionListRestService, selectionListValuesRestService, subscriptionAttributesRestService,
                 subscriptionRestService, userRestService, userRoleRestService, validationRuleRestService, widgetPropertiesRestService, widgetRestService);
-        serverFactory.setProvider(new JacksonJsonProvider());
+
+        Map<Object, Object> extensionMappings = new HashMap<Object, Object>();
+        extensionMappings.put("json", MediaType.APPLICATION_JSON);
+        serverFactory.setExtensionMappings(extensionMappings);
+
+        List<Object> providers = new ArrayList<Object>();
+        providers.add(new JacksonJsonProvider().configure(SerializationFeature.WRITE_DATE_KEYS_AS_TIMESTAMPS, false));
+        serverFactory.setProviders(providers);
+
+
 
         final ServletDestinationFactory destinationFactory = new ServletDestinationFactory();
         final Bus bus = serverFactory.getBus();

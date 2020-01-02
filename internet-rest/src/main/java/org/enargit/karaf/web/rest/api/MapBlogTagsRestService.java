@@ -1,6 +1,7 @@
 package org.enargit.karaf.web.rest.api;
 
 import org.enargit.karaf.core.dto.MapBlogTagsDTO;
+import org.enargit.karaf.core.pagination.Page;
 import org.enargit.karaf.data.api.MapBlogTagsDao;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public interface MapBlogTagsRestService {
     Long convert(String id);
 
     List<MapBlogTagsDTO> getAll();
+
+    Page<MapBlogTagsDTO> getPage(int page, int size);
 
     MapBlogTagsDTO getById(String id);
 

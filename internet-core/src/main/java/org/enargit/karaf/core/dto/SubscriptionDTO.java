@@ -11,6 +11,8 @@ import lombok.experimental.SuperBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -21,6 +23,7 @@ public class SubscriptionDTO extends BasicDTO<Long> {
     private CampaignDTO campaign;
 
     private UserDTO user;
+
 
     @Builder.Default
     @JsonManagedReference("subscription-subscription-attributes-dto")

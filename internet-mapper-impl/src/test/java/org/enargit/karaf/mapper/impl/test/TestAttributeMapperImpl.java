@@ -7,7 +7,7 @@ import org.enargit.karaf.core.entities.Attribute;
 import org.enargit.karaf.core.entities.Category;
 import org.enargit.karaf.core.enums.ObjectTypes;
 import org.enargit.karaf.core.enums.ValueTypes;
-import org.enargit.karaf.core.utils.JsonUtils;
+import org.enargit.karaf.core.json.JsonUtils;
 import org.enargit.karaf.mapper.impl.AttributeMapperImpl;
 import org.junit.Test;
 

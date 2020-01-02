@@ -1,6 +1,8 @@
 package org.enargit.karaf.web.rest.impl;
 
 import org.enargit.karaf.core.dto.TagDTO;
+import org.enargit.karaf.core.pagination.Page;
+import org.enargit.karaf.core.pagination.PageRequest;
 import org.enargit.karaf.data.api.TagDao;
 import org.enargit.karaf.web.rest.api.TagRestService;
 import org.osgi.service.component.annotations.Component;
@@ -44,7 +46,7 @@ public class TagRestServiceImpl implements TagRestService {
 
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
     @Path(TagRestService.PATH_PREFIX + "" )
     @Override
     public List<TagDTO> getAll() {
@@ -52,7 +54,7 @@ public class TagRestServiceImpl implements TagRestService {
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
     @Path(TagRestService.PATH_PREFIX + "/{id}" )
     @Override
     public TagDTO getById(@PathParam("id") String id) {
@@ -60,8 +62,8 @@ public class TagRestServiceImpl implements TagRestService {
     }
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path(TagRestService.PATH_PREFIX + "/{id}" )
     @Override
     public TagDTO update(@PathParam("id") String id, TagDTO dto) {
@@ -69,8 +71,8 @@ public class TagRestServiceImpl implements TagRestService {
     }
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path(TagRestService.PATH_PREFIX )
     @Override
     public TagDTO create(TagDTO dto) {
@@ -78,12 +80,20 @@ public class TagRestServiceImpl implements TagRestService {
     }
 
     @DELETE
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
     @Path(TagRestService.PATH_PREFIX + "/{id}" )
     @Override
     public TagDTO deleteById(@PathParam("id") String id) {
         TagDTO dto = dao.findDto(convert(id));
         dao.delete(convert(id));
         return dto;
+    }
+
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path(TagRestService.PATH_PREFIX + "")
+    @Override
+    public Page<TagDTO> getPage(@QueryParam("page") int page, @QueryParam("size") int size) {
+        return dao.findAllDto(PageRequest.of(page, size));
     }
 }

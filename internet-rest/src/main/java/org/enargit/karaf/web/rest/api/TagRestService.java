@@ -1,6 +1,7 @@
 package org.enargit.karaf.web.rest.api;
 
 import org.enargit.karaf.core.dto.TagDTO;
+import org.enargit.karaf.core.pagination.Page;
 import org.enargit.karaf.data.api.TagDao;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public interface TagRestService {
     Long convert(String id);
 
     List<TagDTO> getAll();
+
+    Page<TagDTO> getPage(int page, int size);
 
     TagDTO getById(String id);
 

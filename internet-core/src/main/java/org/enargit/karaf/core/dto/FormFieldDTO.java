@@ -12,6 +12,9 @@ import org.enargit.karaf.core.enums.DataTypes;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -35,9 +38,11 @@ public class FormFieldDTO extends BasicDTO<Long> {
     @JsonBackReference("widget-form-field-dto")
     private WidgetDTO widget;
 
+
     @Builder.Default
     @JsonManagedReference("form-field-validation-rule-dto")
     private List<ValidationRuleDTO> validationRules = new ArrayList<>(0);
+
 
     @Builder.Default
     @JsonManagedReference("form-field-form-field-mapping-dto")

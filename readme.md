@@ -7,6 +7,11 @@
 
 
 #### 2. Install additional bundles:
+
+
+     ``` 
+         install -s mvn:org.postgresql/postgresql/42.2.8
+       ```
     
    ``` 
      install -s mvn:org.postgresql/postgresql/42.2.8

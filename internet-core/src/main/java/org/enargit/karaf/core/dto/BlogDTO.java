@@ -10,6 +10,8 @@ import lombok.experimental.SuperBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -20,6 +22,7 @@ public class BlogDTO extends BasicDTO<Long> {
     private String text;
     private String summary;
     private String author;
+
 
     @Builder.Default
     @JsonManagedReference("blog-map-blog-tags-dto")

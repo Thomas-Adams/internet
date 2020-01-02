@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -24,9 +26,11 @@ public class FormDefinitionDTO extends BasicDTO<Long> {
 
     private String description;
 
+
     @Builder.Default
     @JsonManagedReference("form-definition-validation-rule-dto")
     private List<ValidationRuleDTO> validationRules = new ArrayList<>(0);
+
 
     @Builder.Default
     @JsonManagedReference("form-definition-form-field-dto")

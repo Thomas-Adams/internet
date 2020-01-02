@@ -13,6 +13,9 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -25,6 +28,7 @@ public class CategoryDTO extends BasicDTO<Long> {
 
     @Size(max = 10485760)
     private String description;
+
 
     @Builder.Default
     @JsonManagedReference("category-attribute-dto")

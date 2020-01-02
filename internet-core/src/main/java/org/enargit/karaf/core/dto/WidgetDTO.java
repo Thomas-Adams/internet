@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -21,9 +23,11 @@ public class WidgetDTO extends BasicDTO<Long> {
 
     private String description;
 
+
     @Builder.Default
     @JsonManagedReference("widget-widget-properties-dto")
     private List<WidgetPropertiesDTO> widgetProperties = new ArrayList<>(0);
+
 
     @Builder.Default
     @JsonManagedReference("widget-form-field-dto")

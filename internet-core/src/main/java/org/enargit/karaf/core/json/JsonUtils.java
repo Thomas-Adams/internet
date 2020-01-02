@@ -1,4 +1,4 @@
-package org.enargit.karaf.core.utils;
+package org.enargit.karaf.core.json;
 
 import com.fasterxml.jackson.core.PrettyPrinter;
 import com.fasterxml.jackson.core.util.DefaultIndenter;

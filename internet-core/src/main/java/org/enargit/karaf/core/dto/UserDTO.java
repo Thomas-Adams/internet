@@ -1,11 +1,13 @@
 package org.enargit.karaf.core.dto;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.enargit.karaf.core.json.JodaDateTimeSerializer;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,6 +17,8 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+
 
 
 @NoArgsConstructor
@@ -53,12 +57,14 @@ public class UserDTO extends BasicDTO<Long> {
 
     private String refreshToken;
 
+    @JsonSerialize(using = JodaDateTimeSerializer.class)
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastChangeCredentials;
 
 
     private ProfileDTO profile;
+
 
     @Builder.Default
     @JsonManagedReference("user-user-roles-dto")
