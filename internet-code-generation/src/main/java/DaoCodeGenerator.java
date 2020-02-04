@@ -7,6 +7,7 @@ import org.reflections.Reflections;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,7 @@ public class DaoCodeGenerator {
             root.put("entityName", className);
             Template template = freeMarkerConfiguration.getCfg().getTemplate("dao.fm");
             FileOutputStream fos = new FileOutputStream(targetFile);
-            Writer out = new OutputStreamWriter(fos);
+            Writer out = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
             template.process(root, out);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
@@ -49,7 +50,7 @@ public class DaoCodeGenerator {
             root.put("entityName", className);
             Template template = freeMarkerConfiguration.getCfg().getTemplate("daoimpl.fm");
             FileOutputStream fos = new FileOutputStream(targetFile);
-            Writer out = new OutputStreamWriter(fos);
+            Writer out = new OutputStreamWriter(fos, StandardCharsets.UTF_8);;
             template.process(root, out);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
@@ -67,7 +68,7 @@ public class DaoCodeGenerator {
             root.put("entityName", className);
             Template template = freeMarkerConfiguration.getCfg().getTemplate("rest.fm");
             FileOutputStream fos = new FileOutputStream(targetFile);
-            Writer out = new OutputStreamWriter(fos);
+            Writer out = new OutputStreamWriter(fos, StandardCharsets.UTF_8);;
             template.process(root, out);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
@@ -85,7 +86,7 @@ public class DaoCodeGenerator {
             root.put("entityName", className);
             Template template = freeMarkerConfiguration.getCfg().getTemplate("restimpl.fm");
             FileOutputStream fos = new FileOutputStream(targetFile);
-            Writer out = new OutputStreamWriter(fos);
+            Writer out = new OutputStreamWriter(fos, StandardCharsets.UTF_8);;
             template.process(root, out);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
@@ -106,7 +107,7 @@ public class DaoCodeGenerator {
             root.put("entityName", className);
             Template template = freeMarkerConfiguration.getCfg().getTemplate("mapperimpl.fm");
             FileOutputStream fos = new FileOutputStream(targetFile);
-            Writer out = new OutputStreamWriter(fos);
+            Writer out = new OutputStreamWriter(fos, StandardCharsets.UTF_8);;
             template.process(root, out);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
@@ -127,7 +128,7 @@ public class DaoCodeGenerator {
             root.put("excludes", excludeProperties(clazz));
             Template template = freeMarkerConfiguration.getCfg().getTemplate("mapper.fm");
             FileOutputStream fos = new FileOutputStream(targetFile);
-            Writer out = new OutputStreamWriter(fos);
+            Writer out = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
             template.process(root, out);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
