@@ -39,7 +39,7 @@
         <postgresql.version>9.4.1212.jre7</postgresql.version>
         <javax.persistence.version>2.2</javax.persistence.version>
         <javax.transaction.version>1.2</javax.transaction.version>
-        <jackson.version>2.9.10</jackson.version>
+        <jackson.version>2.11.0</jackson.version>
         <cxf.version>3.3.4</cxf.version>
         <joda-time.version>2.9.4</joda-time.version>
         <slf4j.version>1.7.29</slf4j.version>
