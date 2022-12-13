@@ -40,7 +40,7 @@
         <javax.persistence.version>2.2</javax.persistence.version>
         <javax.transaction.version>1.2</javax.transaction.version>
         <jackson.version>2.9.10</jackson.version>
-        <cxf.version>3.3.4</cxf.version>
+        <cxf.version>3.4.10</cxf.version>
         <joda-time.version>2.9.4</joda-time.version>
         <slf4j.version>1.7.29</slf4j.version>
         <camel.version>2.24.2</camel.version>
